@@ -1,5 +1,5 @@
 [project]
-name = "phd-pso-tsp"
+name = "pso-topologies"
 version = "0.1.0"
 description = "PSO applied to TSP problems — PhD research"
 requires-python = ">=3.13,<3.14"
