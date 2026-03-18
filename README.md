@@ -1,14 +1,9 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project
+# PSO-TSP
 
 PhD research: application of **PSO (Particle Swarm Optimization)** to **TSP (Travelling Salesman Problem)**.
 
 - Python 3.13, managed with **uv** (`pyproject.toml`)
 - **Numba** used for JIT-compiled hot paths (distance matrices, fitness evaluation, etc.)
-- Old reference code is the **primary source** for porting logic with improvements — exact path will be provided at the start of each session
 
 ## Package structure
 
@@ -18,7 +13,7 @@ topologies/    # Swarm topology definitions (ring, mesh, tree, torus, …)
 data/          # TSP instance loading and preprocessing
 experiments/   # Experiment runners and result collection
 notebooks/     # Jupyter notebooks for analysis and visualisation
-main.py        # PyCharm entry point
+main.py        # Entry point
 ```
 
 ## Key dependencies
