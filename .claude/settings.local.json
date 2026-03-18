@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed 's/.*\"\"\"\"import //')",
+      "Bash(sed 's/.*\"\"\"\"from //')",
+      "Bash(uv:*)"
+    ]
+  }
+}

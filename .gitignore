@@ -1,0 +1,40 @@
+# Virtual environment
+.venv/
+
+# uv
+uv.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Numba cache
+__pycache__/
+*.nbi
+*.nbc
+
+# Data / results (large files)
+# Uncomment if you don't want to track experiment outputs
+# results/
+# *.csv
+# *.pkl
