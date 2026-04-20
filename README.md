@@ -14,6 +14,7 @@ pso/
   factory.py           # AlgorithmFactory — builds variants by name
   operators/
     default.py         # Order crossover (OX) + swap mutation
+    cognitive.py       # Cognitive variant — adds personal-best crossover step
 topologies/
   global_.py           # Fully connected (no topology)
   ring.py              # Ring
@@ -64,16 +65,26 @@ uv run main.py --algorithm <NAME> --problem <PROBLEM> [options]
 | `--param KEY=VALUE` | — | Extra topology-specific parameter (repeatable) |
 | `-q`, `--quiet` | — | Suppress per-run progress |
 
-**Algorithm name format:** `PSO[-Topology]`
+**Algorithm name format:** `PSO[-OperatorVariant][-Topology]`
 
-| Name | Topology |
+| Name | Operators | Topology |
+|---|---|---|
+| `PSO` | Default (OX + swap) | Global (all particles share one best) |
+| `PSO-Ring` | Default | Ring |
+| `PSO-Tree` | Default | Binary tree |
+| `PSO-Mesh` | Default | 2D mesh grid |
+| `PSO-Torus` | Default | Wrap-around torus |
+| `PSO-FreeScale` | Default | Barabási-Albert scale-free |
+| `PSO-Cognitive` | Cognitive (OX + swap + personal best) | Global |
+| `PSO-Cognitive-Ring` | Cognitive | Ring |
+| `PSO-Cognitive-<Topology>` | Cognitive | Any topology above |
+
+**Operator variants:**
+
+| Variant token | Description |
 |---|---|
-| `PSO` | Global (all particles share one best) |
-| `PSO-Ring` | Ring |
-| `PSO-Tree` | Binary tree |
-| `PSO-Mesh` | 2D mesh grid |
-| `PSO-Torus` | Wrap-around torus |
-| `PSO-FreeScale` | Barabási-Albert scale-free |
+| *(omitted)* | Default: OX crossover toward neighbourhood best + swap mutation |
+| `Cognitive` | Adds a personal-best (cognitive) crossover step before the social crossover, mirroring the full PSO velocity equation (inertia + cognitive + social) |
 
 **Examples:**
 
