@@ -12,6 +12,11 @@ from topologies.tree import TreeTopologyMixin
 from topologies.mesh import MeshTopologyMixin
 from topologies.torus import TorusTopologyMixin
 from topologies.free_scale import FreeScaleTopologyMixin
+from topologies.dynamic_similarity import (
+    DynamicSimilarityTopologyMixin,
+    DynamicOppositeTopologyMixin,
+    DynamicMixTopologyMixin,
+)
 
 
 # --------------------------------------------------------------------------
@@ -32,6 +37,9 @@ _TOPOLOGY_MAP: dict[str, type] = {
     "mesh":       MeshTopologyMixin,
     "torus":      TorusTopologyMixin,
     "freescale":  FreeScaleTopologyMixin,
+    "dynsim":     DynamicSimilarityTopologyMixin,   # exploit: most similar neighbours
+    "dynopp":     DynamicOppositeTopologyMixin,     # explore: most dissimilar neighbours
+    "dynmix":     DynamicMixTopologyMixin,          # alternates exploit/explore
 }
 
 
