@@ -4,6 +4,8 @@ from data.loader import TSPInstance
 from pso.base import PSOBase
 from pso.operators.default import DefaultOperatorsMixin
 from pso.operators.cognitive import CognitiveMixin
+from pso.operators.apv import APVOperatorsMixin
+from pso.operators.swu import SWUOperatorsMixin
 from topologies.global_ import GlobalTopologyMixin
 from topologies.ring import RingTopologyMixin
 from topologies.tree import TreeTopologyMixin
@@ -19,7 +21,8 @@ from topologies.free_scale import FreeScaleTopologyMixin
 _OPERATOR_MAP: dict[str, type] = {
     "default":   DefaultOperatorsMixin,
     "cognitive": CognitiveMixin,
-    # "operators1": Operators1Mixin,  # add when the variant is implemented
+    "apv":       APVOperatorsMixin,
+    "swu":       SWUOperatorsMixin,
 }
 
 _TOPOLOGY_MAP: dict[str, type] = {
