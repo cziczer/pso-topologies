@@ -17,6 +17,7 @@ pso/
     cognitive.py       # Cognitive variant — adds personal-best crossover step
     apv.py             # APV — Adaptive Probability Vector (Numba-accelerated)
     swu.py             # SWU — Similarity-Weighted Update (extends APV)
+    stagnation_explore.py # Explore enhancer — per-particle stagnation + trial-and-revert
     _numba_kernels.py  # Shared JIT kernels for APV/SWU
 topologies/
   global_.py           # Fully connected (no topology)
@@ -69,9 +70,9 @@ uv run main.py --algorithm <NAME> --problem <PROBLEM> [options]
 | `--param KEY=VALUE` | — | Extra topology/operator parameter (repeatable) |
 | `-q`, `--quiet` | — | Suppress per-run progress |
 
-**Algorithm name format:** `PSO[-OperatorVariant][-Topology]`
+**Algorithm name format:** `PSO[-OperatorVariant][-Topology][-Enhancer]`
 
-Token matching is case-insensitive. Operator and topology token namespaces are disjoint — order does not matter.
+Token matching is case-insensitive. Operator, topology, and enhancer token namespaces are disjoint — order does not matter.
 
 ### Operator variants
 
@@ -83,6 +84,21 @@ Token matching is case-insensitive. Operator and topology token namespaces are d
 | `SWU` | **Similarity-Weighted Update** — extends APV by scaling pbest/gbest components by the Hamming similarity between the particle and each guide. Focuses probability mass on the remaining differences when two tours are already close. |
 
 APV and SWU accept extra hyperparameters via `--param`:
+
+### Enhancers
+
+Enhancers are optional modifiers that wrap the run loop with additional per-particle logic. They compose with any operator + topology combination (except APV/SWU).
+
+| Token | Description |
+|---|---|
+| `Explore` | **Stagnation exploration** — tracks each particle's personal best independently. After `stagnation_trigger` iterations without improvement, snapshots the particle, applies a double-bridge (4-opt) perturbation, and runs normal PSO steps for `explore_window` iterations. At window end: keeps the best position found if better than the snapshot, otherwise reverts. Early commit if a new personal best is found mid-window. |
+
+Explore parameters (pass via `--param`):
+
+| Parameter | Default | Description |
+|---|---|---|
+| `stagnation_trigger` | `stagnation_window // 2` | Iterations without personal-best improvement before exploration fires |
+| `explore_window` | `10` | Exploration iterations before committing or reverting |
 
 | Parameter | Default | Description |
 |---|---|---|
@@ -116,18 +132,22 @@ Similarity is measured via normalised Hamming distance on paths rolled to start 
 
 ### Algorithm name examples
 
-| Name | Operators | Topology |
-|---|---|---|
-| `PSO` | Default | Global |
-| `PSO-Ring` | Default | Ring |
-| `PSO-Cognitive-Ring` | Cognitive | Ring |
-| `PSO-APV` | APV | Global |
-| `PSO-APV-Ring` | APV | Ring |
-| `PSO-SWU-Torus` | SWU | Torus |
-| `PSO-DynSim` | Default | Dynamic exploit |
-| `PSO-DynOpp` | Default | Dynamic explore |
-| `PSO-DynMix` | Default | Dynamic mix |
-| `PSO-APV-DynSim` | APV | Dynamic exploit |
+| Name | Operators | Topology | Enhancer |
+|---|---|---|---|
+| `PSO` | Default | Global | — |
+| `PSO-Ring` | Default | Ring | — |
+| `PSO-Cognitive-Ring` | Cognitive | Ring | — |
+| `PSO-APV` | APV | Global | — |
+| `PSO-APV-Ring` | APV | Ring | — |
+| `PSO-SWU-Torus` | SWU | Torus | — |
+| `PSO-DynSim` | Default | Dynamic exploit | — |
+| `PSO-DynOpp` | Default | Dynamic explore | — |
+| `PSO-DynMix` | Default | Dynamic mix | — |
+| `PSO-APV-DynSim` | APV | Dynamic exploit | — |
+| `PSO-Explore` | Default | Global | Stagnation explore |
+| `PSO-Explore-Ring` | Default | Ring | Stagnation explore |
+| `PSO-Explore-DynMix` | Default | Dynamic mix | Stagnation explore |
+| `PSO-Cognitive-Explore-Ring` | Cognitive | Ring | Stagnation explore |
 
 ### CLI examples
 
@@ -232,7 +252,9 @@ Each experiment produces one JSON file containing all N runs:
   "problem": { "name": "tsplib-berlin52", "dimension": 52, "optimal_known": null },
   "algorithm": {
     "name": "PSO-DynMix",
+    "operator_variant": "default",
     "topology": "dynmix",
+    "enhancer": null,
     "config": { "num_particles": 700, "max_iter": 20000, "recalc_interval": 10 }
   },
   "aggregate": {
@@ -247,6 +269,7 @@ Each experiment produces one JSON file containing all N runs:
   "runs": [
     {
       "run_index": 0,
+      "init_path_length": 9201.4,
       "best_path_length": 7891.23,
       "best_path": [0, 12, 7, 43, "..."],
       "iteration_history": [9201.4, 8800.1, "..."],
@@ -297,6 +320,18 @@ uv run jupyter notebook
 | `scikit-posthocs` | Post-hoc statistical tests |
 
 ## Changelog
+
+### Stagnation exploration enhancer (`Explore`)
+
+`StagnationExploreMixin` (`pso/operators/stagnation_explore.py`) is a new category of composable modifier called an **enhancer**. Unlike operator variants, enhancers sit at the front of the MRO — `(EnhancerMixin, OperatorMixin, TopologyMixin, PSOBase)` — and wrap the run loop while still calling through to the operator mixin's `crossover()`/`mutate()` hooks.
+
+Each particle is tracked independently via stagnation counters and personal bests. When a particle's personal best hasn't improved for `stagnation_trigger` iterations, its position is snapshotted and a **double-bridge** (4-opt) move is applied — a non-sequential segment reconnection that cannot be undone by any 2-opt move, ensuring a genuine basin escape. Normal PSO steps continue for `explore_window` iterations while the best position found is tracked. At window end the particle either commits to the best explored position (if better than the snapshot) or reverts entirely. A new personal best during the window triggers an early commit.
+
+The factory was extended with a separate `_ENHANCER_MAP` registry and a 4th token slot in `AlgorithmFactory.parse()` (now returns `(base, op_key, topo_key, enh_key)`).
+
+### `init_path_length` in result JSON
+
+Each run in the result JSON now includes `"init_path_length"`: the best tour length across all greedy-initialised particles, captured before any PSO iterations. This provides a baseline to measure how much the optimizer improved over the starting solution. `ExperimentRunner` reads it from `pso.global_best_length` immediately after construction. Older JSON files load cleanly with a default of `0.0`.
 
 ### Dynamic similarity topologies (`DynSim` / `DynOpp` / `DynMix`)
 

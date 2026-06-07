@@ -13,6 +13,7 @@ class RunResult:
     iteration_history: list[float]  # best length recorded every 20 iterations
     iterations_run: int
     wall_time_seconds: float
+    init_path_length: float = 0.0   # best greedy-initialised tour before any PSO steps
 
 
 @dataclass

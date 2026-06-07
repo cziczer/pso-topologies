@@ -6,6 +6,7 @@ from pso.operators.default import DefaultOperatorsMixin
 from pso.operators.cognitive import CognitiveMixin
 from pso.operators.apv import APVOperatorsMixin
 from pso.operators.swu import SWUOperatorsMixin
+from pso.operators.stagnation_explore import StagnationExploreMixin
 from topologies.global_ import GlobalTopologyMixin
 from topologies.ring import RingTopologyMixin
 from topologies.tree import TreeTopologyMixin
@@ -28,6 +29,12 @@ _OPERATOR_MAP: dict[str, type] = {
     "cognitive": CognitiveMixin,
     "apv":       APVOperatorsMixin,
     "swu":       SWUOperatorsMixin,
+}
+
+# Enhancers wrap the run() loop and compose in front of the operator mixin.
+# MRO: (EnhancerMixin, OperatorMixin, TopologyMixin, PSOBase)
+_ENHANCER_MAP: dict[str, type] = {
+    "explore": StagnationExploreMixin,
 }
 
 _TOPOLOGY_MAP: dict[str, type] = {
@@ -62,8 +69,10 @@ class AlgorithmFactory:
     """
 
     @staticmethod
-    def parse(name: str) -> tuple[str, str, str]:
-        """Parse *name* into (base, operator_key, topology_key).
+    def parse(name: str) -> tuple[str, str, str, str | None]:
+        """Parse *name* into (base, operator_key, topology_key, enhancer_key).
+
+        *enhancer_key* is ``None`` when no enhancer token is present.
 
         Raises:
             ValueError: if the first token is not ``"PSO"`` or an unknown token
@@ -77,6 +86,7 @@ class AlgorithmFactory:
 
         operator_key = "default"
         topology_key = "global"
+        enhancer_key: str | None = None
 
         for token in tokens[1:]:
             lower = token.lower()
@@ -84,14 +94,17 @@ class AlgorithmFactory:
                 operator_key = lower
             elif lower in _TOPOLOGY_MAP:
                 topology_key = lower
+            elif lower in _ENHANCER_MAP:
+                enhancer_key = lower
             else:
                 raise ValueError(
                     f"Unknown token '{token}' in algorithm name '{name}'.\n"
                     f"  Known operator variants : {sorted(_OPERATOR_MAP)}\n"
-                    f"  Known topologies        : {sorted(_TOPOLOGY_MAP)}"
+                    f"  Known topologies        : {sorted(_TOPOLOGY_MAP)}\n"
+                    f"  Known enhancers         : {sorted(_ENHANCER_MAP)}"
                 )
 
-        return "PSO", operator_key, topology_key
+        return "PSO", operator_key, topology_key, enhancer_key
 
     @staticmethod
     def build(name: str, instance: TSPInstance, **kwargs) -> PSOBase:
@@ -112,9 +125,15 @@ class AlgorithmFactory:
         Returns:
             A fully initialised ``PSOBase`` subclass instance.
         """
-        _, op_key, topo_key = AlgorithmFactory.parse(name)
+        _, op_key, topo_key, enh_key = AlgorithmFactory.parse(name)
         op_cls   = _OPERATOR_MAP[op_key]
         topo_cls = _TOPOLOGY_MAP[topo_key]
 
-        composed_cls = type(name, (op_cls, topo_cls, PSOBase), {})
+        if enh_key is not None:
+            enh_cls = _ENHANCER_MAP[enh_key]
+            bases = (enh_cls, op_cls, topo_cls, PSOBase)
+        else:
+            bases = (op_cls, topo_cls, PSOBase)
+
+        composed_cls = type(name, bases, {})
         return composed_cls(instance=instance, **kwargs)

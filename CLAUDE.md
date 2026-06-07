@@ -21,6 +21,7 @@ pso/
     cognitive.py       # CognitiveMixin — adds personal-best crossover step before social step
     apv.py             # APVOperatorsMixin — Adaptive Probability Vector; Numba-accelerated main loop
     swu.py             # SWUOperatorsMixin — Similarity-Weighted Update; extends APV with sim coefficients
+    stagnation_explore.py # StagnationExploreMixin — per-particle stagnation detection + trial-and-revert exploration
     _numba_kernels.py  # @njit kernels shared by APV and SWU (apv_full_iteration, swu_full_iteration)
 topologies/
   base.py              # TopologyMixin ABC — cooperative __init__, build_topology hook
@@ -49,18 +50,27 @@ main.py                # CLI entry point (argparse)
 PSO variants are composed via **cooperative multiple inheritance**. The factory assembles a class dynamically:
 
 ```
+# Without enhancer
 type(name, (OperatorMixin, TopologyMixin, PSOBase), {})
+
+# With enhancer
+type(name, (EnhancerMixin, OperatorMixin, TopologyMixin, PSOBase), {})
 ```
 
-MRO: `OperatorMixin → TopologyMixin → PSOBase`. The main loop lives in `PSOBase.run()` (or is overridden by `APVOperatorsMixin.run()` for APV/SWU) and calls two hooks:
+MRO: `EnhancerMixin → OperatorMixin → TopologyMixin → PSOBase`. The main loop lives in `PSOBase.run()` (or is overridden by operator/enhancer mixins) and calls two hooks:
 - `get_neighbourhood_best(i)` — provided by topology mixin
 - `crossover(current, guide)` / `mutate(path)` — provided by operator mixin (not used by APV/SWU)
 
-**Algorithm name format**: `PSO[-OperatorVariant][-Topology]`
+**Algorithm name format**: `PSO[-OperatorVariant][-Topology][-Enhancer]`
+
+Token namespaces are disjoint and order-insensitive. The enhancer token is optional and stacks on top of any operator + topology combination.
+
 - `"PSO"` → global topology + default operators
 - `"PSO-Ring"` → ring topology + default operators
 - `"PSO-APV-Ring"` → ring topology + APV operators
 - `"PSO-DynMix"` → dynamic mix topology + default operators
+- `"PSO-Explore"` → global topology + default operators + stagnation exploration
+- `"PSO-Explore-Ring"` → ring topology + default operators + stagnation exploration
 
 ## Operator variants
 
@@ -72,6 +82,29 @@ MRO: `OperatorMixin → TopologyMixin → PSOBase`. The main loop lives in `PSOB
 | `SWU` | `SWUOperatorsMixin` | Similarity-Weighted Update — APV scaled by particle-to-guide similarity |
 
 APV and SWU override `run()` entirely; they do not use `crossover()`/`mutate()`.
+
+## Enhancers
+
+Enhancers sit at the front of the MRO and override `run()`, wrapping the operator mixin's `crossover()`/`mutate()` hooks with additional per-particle logic. They are registered in `_ENHANCER_MAP` in `pso/factory.py` and compose with any operator + topology combination (except APV/SWU, which also override `run()` — compose with default/cognitive operators only).
+
+| Token | Class | Description |
+|---|---|---|
+| `Explore` | `StagnationExploreMixin` | Per-particle stagnation detection with double-bridge perturbation and trial-and-revert |
+
+### StagnationExploreMixin parameters
+
+Each particle is tracked independently. When a particle's personal best hasn't improved for `stagnation_trigger` iterations, the mixin snapshots its position, applies a **double-bridge** (4-opt) perturbation, and runs the normal PSO steps for `explore_window` iterations. At window end: keeps the best position found if it beats the snapshot, otherwise reverts. If a new personal best is found mid-window, it commits immediately.
+
+| Parameter | Default | Description |
+|---|---|---|
+| `stagnation_trigger` | `stagnation_window // 2` or `50` | Iterations without personal-best improvement before exploration fires |
+| `explore_window` | `10` | Exploration iterations before committing or reverting |
+
+## Adding a new enhancer
+
+1. Create `pso/operators/<name>.py` with a class that overrides `run()` and calls `self.crossover()`/`self.mutate()` via MRO
+2. Export from `pso/operators/__init__.py`
+3. Register in `_ENHANCER_MAP` in `pso/factory.py`
 
 ## Topologies
 
@@ -141,6 +174,11 @@ uv run jupyter notebook
 2. Override `crossover()` and/or `mutate()` (or `run()` for full loop control like APV/SWU)
 3. Export from `pso/operators/__init__.py`
 4. Register in `_OPERATOR_MAP` in `pso/factory.py`
+
+## Result format notes
+
+- `RunResult.init_path_length` — best greedy-initialised tour length captured before any PSO iterations; set by `ExperimentRunner` from `pso.global_best_length` immediately after construction. Present in JSON as `"init_path_length"` in each run object; older JSON files load with a default of `0.0`.
+- `ExperimentResult` JSON includes `"enhancer"` in the `algorithm` block (`null` when no enhancer is used).
 
 ## Numba usage guidelines
 

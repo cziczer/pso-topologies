@@ -65,6 +65,7 @@ class ExperimentRunner:
                 self.instance,
                 **self.algorithm_kwargs,
             )
+            init_length = pso.global_best_length
 
             run_start = time.perf_counter()
             result = pso.run()
@@ -72,6 +73,7 @@ class ExperimentRunner:
 
             result.run_index = rep
             result.wall_time_seconds = wall_time
+            result.init_path_length = init_length
             runs.append(result)
 
             if self.verbose:

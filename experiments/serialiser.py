@@ -17,9 +17,9 @@ class ResultSerialiser:
         # Parse algorithm name into components for the JSON
         try:
             from pso.factory import AlgorithmFactory
-            _, op_key, topo_key = AlgorithmFactory.parse(result.algorithm_name)
+            _, op_key, topo_key, enh_key = AlgorithmFactory.parse(result.algorithm_name)
         except Exception:
-            op_key, topo_key = "unknown", "unknown"
+            op_key, topo_key, enh_key = "unknown", "unknown", None
 
         # Split problem name into source + instance
         parts = result.problem_name.split("-", maxsplit=1)
@@ -41,6 +41,7 @@ class ResultSerialiser:
                 "base": "PSO",
                 "operator_variant": op_key,
                 "topology": topo_key,
+                "enhancer": enh_key,
                 "config": result.algorithm_config,
             },
             "aggregate": {
@@ -55,6 +56,7 @@ class ResultSerialiser:
             "runs": [
                 {
                     "run_index": r.run_index,
+                    "init_path_length": r.init_path_length,
                     "best_path_length": r.best_path_length,
                     "best_path": r.best_path,
                     "iteration_history": r.iteration_history,
@@ -87,6 +89,7 @@ class ResultSerialiser:
                 iteration_history=r["iteration_history"],
                 iterations_run=r["iterations_run"],
                 wall_time_seconds=r["wall_time_seconds"],
+                init_path_length=r.get("init_path_length", 0.0),
             )
             for r in data["runs"]
         ]
