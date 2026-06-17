@@ -183,6 +183,68 @@ uv run main.py -a PSO-FreeScale -p tsplib-berlin52 -n 10 --param ba_attachment=5
 uv run main.py -a PSO-Ring -p tsplib-berlin52 -n 30 -o results/ring_berlin52.json
 ```
 
+### Running the full experiment suite
+
+`experiments/run_parallel.py` generates all experiment combinations and runs them in parallel using `ProcessPoolExecutor`.
+
+```bash
+# Run all 1548 experiments (auto-detects workers, NUMBA_NUM_THREADS=2)
+uv run experiments/run_parallel.py
+
+# Explicit parallelism
+uv run experiments/run_parallel.py --workers 4
+
+# Preview commands without running
+uv run experiments/run_parallel.py --dry-run
+```
+
+**All flags:**
+
+| Flag | Default | Description |
+|---|---|---|
+| `-j`, `--workers` | `ceil(cpus/2)` | Parallel worker processes |
+| `--numba-threads` | `2` | `NUMBA_NUM_THREADS` per worker (APV/SWU are Numba-parallel) |
+| `--groups A B …` | all | Run only specific groups (A–M) |
+| `--problems berlin52 …` | all | Override problem list |
+| `--start N` | `1` | First experiment to run (1-based, stable index) |
+| `--end N` | last | Last experiment to run (1-based, inclusive) |
+| `--dry-run` | — | Print commands with stable indices, don't execute |
+| `--retry-failed LOG` | — | Re-run only experiments listed in a failure log |
+
+**Examples:**
+
+```bash
+# Run only group A (baselines) on two problems
+uv run experiments/run_parallel.py --groups A --problems berlin52 bier127
+
+# Run experiments 78–500 (resume after stopping at 77)
+uv run experiments/run_parallel.py --start 78 --end 500
+
+# Split across machines
+uv run experiments/run_parallel.py --start 1    --end 500   # machine 1
+uv run experiments/run_parallel.py --start 501  --end 1000  # machine 2
+uv run experiments/run_parallel.py --start 1001             # machine 3
+
+# Pure-Python operators only — maximise workers, limit Numba threads
+NUMBA_NUM_THREADS=1 uv run experiments/run_parallel.py --workers 8 --groups A B C F G H I L M
+
+# Retry failed experiments from a previous run
+uv run experiments/run_parallel.py --retry-failed results/failed_20260617_143022.log
+```
+
+**Output:**
+- `results/<problem>_<algorithm>_<timestamp>.json` — result data per experiment
+- `results/logs/<algo>_<problem>_<timestamp>.log` — stdout/stderr per experiment
+- `results/failed_<timestamp>.log` — structured failure log (JSON lines, used by `--retry-failed`)
+
+Progress line format:
+```
+[  3/25  #80/1548] OK    45.2s  ETA 0:12:30  [B] PSO-Torus @ bier127 --neighbours-radius 5
+ ^^^ done/submitted  ^^^ stable index/total
+```
+
+The stable index (`#N/1548`) is deterministic — the same experiment always maps to the same number, regardless of completion order or how many workers are used.
+
 ### Python API (Jupyter / scripts)
 
 The full stack is importable directly — no CLI required:

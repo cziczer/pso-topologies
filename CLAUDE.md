@@ -161,6 +161,25 @@ uv run main.py -a PSO-Ring -p tsplib-berlin52 -n 30
 uv run jupyter notebook
 ```
 
+## Running the full experiment suite
+
+```bash
+# Run all 1548 experiments in parallel (auto-detects workers)
+uv run experiments/run_parallel.py
+
+# Key flags
+uv run experiments/run_parallel.py --workers 4
+uv run experiments/run_parallel.py --dry-run                        # preview with stable indices
+uv run experiments/run_parallel.py --groups A B --problems berlin52 # subset
+uv run experiments/run_parallel.py --start 78 --end 500             # index slice (1-based, inclusive)
+uv run experiments/run_parallel.py --retry-failed results/failed_<ts>.log
+```
+
+- Stable experiment indices are deterministic (`--dry-run` shows `[N/1548]` for each command)
+- Each experiment writes a log to `results/logs/` and its result JSON to `results/`
+- Failures are appended to `results/failed_<timestamp>.log` without interrupting other experiments
+- `NUMBA_NUM_THREADS` defaults to `2` per worker; set to `1` with more `--workers` for pure-Python operator groups (B, C, F, G, H, I, L, M)
+
 ## Adding a new topology
 
 1. Create `topologies/<name>.py` with a class inheriting `TopologyMixin`
