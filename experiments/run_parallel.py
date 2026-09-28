@@ -1,8 +1,23 @@
 #!/usr/bin/env python3
 """Parallel PSO-TSP experiment runner.
 
-Generates the same 1 782 experiment commands as commands.sh and executes them
+Generates the same experiment commands as commands.sh and executes them
 concurrently using subprocess workers.  Results land in results/ as usual.
+
+Plan size
+---------
+With the active problem scope (dimension <= MAX_PROBLEM_DIM) the plan is
+774 configs x 10 repetitions = 7 740 runs:
+
+    A      3 problems x 6 algorithms                        =  18
+    B-G    6 groups x 3 problems x 6 radii x 5 static topos = 540
+    H-M    6 groups x 3 problems x 4 pcts x 3 dyn topos     = 216
+
+With all six problems (--all-problems) it is 1 548 configs (36 + 1080 + 432).
+Earlier revisions of this docstring claimed 1 782; that figure was never
+implemented -- it came from section comments assuming 6 neighbour_pct values and
+9 baseline algorithms, while the code has always had 4 and 6.  Count
+build_experiments() rather than trusting a comment.
 
 Usage
 -----
@@ -56,9 +71,28 @@ from pathlib import Path
 # Experiment specification
 # ─────────────────────────────────────────────────────────────────────────────
 
-PROBLEMS = [
+ALL_PROBLEMS = [
     "berlin52", "bier127", "a280", "ali535", "gr666", "pr1002",
 ]
+
+# TSPLIB instance dimension (city count) per problem.
+PROBLEM_DIMS = {
+    "berlin52": 52, "bier127": 127, "a280": 280,
+    "ali535": 535, "gr666": 666, "pr1002": 1002,
+}
+
+# Active scope: instances larger than this are out of the study.
+#
+# The three largest instances dominate cost -- measured medians per config are
+# berlin52 0.76 h, bier127 1.65 h, a280 3.72 h, but ali535 9.19 h, gr666 12.92 h
+# and pr1002 21.62 h, with a pr1002 worst case of 58.5 h.  They accounted for
+# ~91 % of the remaining compute, and their long tails are what pushed array
+# tasks past their walltime.  Excluding them is a deliberate scope reduction,
+# not a bug: pass --all-problems to run the full six again.
+MAX_PROBLEM_DIM = 500
+
+PROBLEMS = [p for p in ALL_PROBLEMS if PROBLEM_DIMS[p] <= MAX_PROBLEM_DIM]
+EXCLUDED_PROBLEMS = [p for p in ALL_PROBLEMS if p not in PROBLEMS]
 
 STATIC_TOPOS = ["Ring", "Tree", "Mesh", "Torus", "FreeScale"]
 DYN_TOPOS    = ["DynSim", "DynOpp", "DynMix"]
@@ -268,7 +302,11 @@ def main() -> None:
     parser.add_argument("--groups", nargs="+", metavar="G",
                         help="Run only specific groups, e.g. --groups A B H")
     parser.add_argument("--problems", nargs="+", metavar="P",
-                        help="Override problem list, e.g. --problems berlin52 bier127")
+                        help="Override problem list, e.g. --problems berlin52 bier127 "
+                             "(bypasses the MAX_PROBLEM_DIM scope)")
+    parser.add_argument("--all-problems", action="store_true",
+                        help=f"Include the instances excluded by MAX_PROBLEM_DIM="
+                             f"{MAX_PROBLEM_DIM}: {', '.join(EXCLUDED_PROBLEMS)}")
     parser.add_argument("--retry-failed", metavar="LOG",
                         help="Re-run only the experiments listed in a failure log file")
     parser.add_argument("--start", type=int, default=0, metavar="N",
@@ -281,7 +319,12 @@ def main() -> None:
         all_experiments = _load_retry(Path(args.retry_failed))
         print(f"Retrying {len(all_experiments)} failed experiments from {args.retry_failed}")
     else:
-        all_experiments = build_experiments(problems=args.problems, groups=args.groups)
+        problems = args.problems or (ALL_PROBLEMS if args.all_problems else PROBLEMS)
+        all_experiments = build_experiments(problems=problems, groups=args.groups)
+        if not args.problems and not args.all_problems and EXCLUDED_PROBLEMS:
+            print(f"Problem scope: {', '.join(problems)}  "
+                  f"(excluding {', '.join(EXCLUDED_PROBLEMS)} "
+                  f"by MAX_PROBLEM_DIM={MAX_PROBLEM_DIM}; --all-problems overrides)")
 
     # 1-based inclusive slice: --start 1 --end 100 runs experiments 1..100
     start_idx = max(0, args.start - 1) if args.start else 0
