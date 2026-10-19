@@ -37,6 +37,19 @@
 #            PSO-Ring 8.08 %, while Mesh/Torus/FreeScale reach 0.03 % — the Ring
 #            topology is broken on its own.
 #
+# RESOLVED 2026-10-19 (commit 0b2f1e5): Ring was never broken (that median
+# aggregated radii 1-50, and at equal radius a ring has 2r neighbours where a
+# mesh has (2r+1)^2-1; at r=25 Ring reaches 3.98-5.08 %), and Explore failed with
+# a topology because StagnationExploreMixin accepted its mutation
+# unconditionally while gating its crossover.  CognitiveMixin was separately
+# inert under Explore, its whole contribution living inside the run() that
+# Explore overrides.  Both are fixed, so Ring and the Explore variants are back
+# in the plan below; Explore configs carry an explicit stagnation_trigger=50 (the
+# value already derived by default) so their command strings differ from the
+# pre-fix logs.  APV and SWU remain out of this script; see run_parallel.py's
+# opt-in APVX group.
+#
+# Superseded text follows, kept because the numbers above refer to it:
 # So APV and SWU are gone, Ring is gone, and Explore / Cognitive-Explore survive
 # only as bare baselines.  Restore them here and in run_parallel.py once fixed.
 #
@@ -96,10 +109,22 @@ reps_for() {
     fi
 }
 
-PROBLEMS=(berlin52 bier127 a280 pr1002)   # excluded (GEO, wrong metric): ali535 gr666
+# All six instances.  ali535 and gr666 were excluded here while the reader
+# applied Euclidean distance to their GEO coordinates; data/tsplib/reader.py
+# implements the TSPLIB GEO formula since commit 0aad143, so they are back.
+PROBLEMS=(berlin52 bier127 a280 ali535 gr666 pr1002)
 BASELINE_ALGOS=(PSO PSO-Cognitive PSO-Explore PSO-Cognitive-Explore)
-TOPO_ALGOS=(PSO PSO-Cognitive)            # excluded (no search): PSO-APV PSO-SWU
-STATIC_TOPOS=(Tree Mesh Torus FreeScale)  # excluded (broken): Ring
+TOPO_ALGOS=(PSO PSO-Cognitive PSO-Explore PSO-Cognitive-Explore)
+STATIC_TOPOS=(Ring Tree Mesh Torus FreeScale)   # excluded: nothing
+# Explore configs carry this explicitly: it equals the default the mixin derives
+# (stagnation_window / 2), so behaviour is unchanged, but the command string then
+# differs from the pre-0b2f1e5 Explore logs that find_missing.py matches on.
+EXPLORE_PARAMS=(--param stagnation_trigger=50)
+
+# Echo the extra Explore parameters when $1 names an Explore variant.
+explore_params_for() {
+  case "$1" in *Explore*) printf '%s\n' "${EXPLORE_PARAMS[@]}" ;; esac
+}
 DYN_TOPOS=(DynSim DynOpp DynMix)
 RADII=(1 5 25)
 PCTS=(0.05 0.25)
@@ -113,7 +138,7 @@ NR=${#RADII[@]}
 NC=${#PCTS[@]}
 
 # BASE:4×4=16   STAT:4×2×4×3=96   DYN:4×2×3×2=48
-TOTAL=$(( NP*NB + NP*NA*NS*NR + NP*NA*ND*NC ))   # = 160
+TOTAL=$(( NP*NB + NP*NA*NS*NR + NP*NA*ND*NC ))   # = 528 for the full plan
 COUNTER=0
 START_TS=$(date +%s)
 LOG_DIR="results/logs"
@@ -158,13 +183,12 @@ run() {
 # ─────────────────────────────────────────────────────────────────────────────
 # BASE — bare algorithms, Global topology                            (16 × 10)
 #
-# Explore and Cognitive-Explore appear ONLY here: they work bare but not when
-# composed with a topology mixin.
 # ─────────────────────────────────────────────────────────────────────────────
 echo "=== BASE: bare algorithms (Global topology) ==="
 for p in "${PROBLEMS[@]}"; do
   for algo in "${BASELINE_ALGOS[@]}"; do
-    run "$algo" "$p"
+    mapfile -t ep < <(explore_params_for "$algo")
+    run "$algo" "$p" "${ep[@]}"
   done
 done
 
@@ -176,7 +200,8 @@ for p in "${PROBLEMS[@]}"; do
   for algo in "${TOPO_ALGOS[@]}"; do
     for topo in "${STATIC_TOPOS[@]}"; do
       for r in "${RADII[@]}"; do
-        run "${algo}-${topo}" "$p" --neighbours-radius "$r"
+        mapfile -t ep < <(explore_params_for "$algo")
+        run "${algo}-${topo}" "$p" --neighbours-radius "$r" "${ep[@]}"
       done
     done
   done
@@ -192,7 +217,8 @@ for p in "${PROBLEMS[@]}"; do
   for algo in "${TOPO_ALGOS[@]}"; do
     for topo in "${DYN_TOPOS[@]}"; do
       for pct in "${PCTS[@]}"; do
-        run "${algo}-${topo}" "$p" --param "neighbor_pct=$pct"
+        mapfile -t ep < <(explore_params_for "$algo")
+        run "${algo}-${topo}" "$p" --param "neighbor_pct=$pct" "${ep[@]}"
       done
     done
   done

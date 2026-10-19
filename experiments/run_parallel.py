@@ -124,14 +124,54 @@ EXCLUDED_PROBLEMS: list[str] = []
 #            PSO-Ring 8.08 %, while Mesh/Torus/FreeScale all reach 0.03 % -- the
 #            Ring topology is broken independently of any operator.
 #
-# So: APV and SWU are dropped entirely, Ring is dropped, and Explore /
-# Cognitive-Explore survive only as bare baselines.  Restore them here once the
-# three defects are fixed.
-TOPO_ALGOS     = ["PSO", "PSO-Cognitive"]
+# RESOLVED 2026-10-19 (commit 0b2f1e5).  Two of those three "defects" were not
+# defects at all, and the third turned out to be two:
+#
+#   * PSO-Ring is NOT broken.  The 8.08 % median above aggregated radii 1-50,
+#     and at equal radius r a ring has 2r neighbours where a mesh has
+#     (2r+1)^2-1.  At r=25 Ring reaches 3.98-5.08 %, better than the global
+#     topology.  Restored below.  See the RADII note: comparing topologies at
+#     equal radius compares neighbourhood SIZE, not topology.
+#   * The local topologies' lack of an lbest memory is load-bearing, not a bug.
+#     Guiding on each neighbour's best-ever position instead made things worse
+#     (PSO-Mesh r=25 6.64 % -> 7.82 %, PSO-Ring r=25 3.98 % -> 6.94 %): the
+#     churn of current positions is what keeps injecting diversity.  No topology
+#     file was touched, so the completed STAT and DYN configs stay valid.
+#   * StagnationExploreMixin accepted its mutation unconditionally while gating
+#     its crossover, so every particle took a random swap every iteration.  With
+#     the global topology self.global_best anchored the swarm; with a local
+#     topology the guide is a neighbour's current position and every neighbour
+#     was being mutated too, so the whole neighbourhood random-walked.  Gated:
+#     PSO-Explore-Mesh r=2 went 8.49 % -> 3.60 % and Torus r=5 8.49 % -> 4.04 %,
+#     both now beating plain PSO (7.51 % in the same harness).
+#   * CognitiveMixin implemented its whole contribution inside its own run(), so
+#     it vanished whenever another mixin overrode run(): PSO-Cognitive-Explore
+#     was behaviourally IDENTICAL to PSO-Explore, to the decimal.  Every
+#     *Cognitive-Explore* config computed before 0b2f1e5 is a duplicate of its
+#     non-cognitive counterpart under a different label.  It is now a hook pair
+#     on the operator mixins, verified behaviour-neutral for PSO/PSO-Cognitive.
+#
+# So Explore and Cognitive-Explore are full topology variants again and Ring is
+# back.  APV and SWU stay out of the default plan; they live in the opt-in APVX
+# probe below.
+TOPO_ALGOS     = ["PSO", "PSO-Cognitive", "PSO-Explore", "PSO-Cognitive-Explore"]
 BASELINE_ALGOS = ["PSO", "PSO-Cognitive", "PSO-Explore", "PSO-Cognitive-Explore"]
 
-BROKEN_ALGOS  = ["PSO-APV", "PSO-SWU"]
-BROKEN_TOPOS  = ["Ring"]
+BROKEN_ALGOS: list[str] = []
+BROKEN_TOPOS: list[str] = []
+
+# Explore configs carry an explicit stagnation_trigger.  50 is exactly what
+# StagnationExploreMixin derives by default (stagnation_window // 2, window 100),
+# so it changes no behaviour -- but it makes the command string differ from the
+# pre-0b2f1e5 Explore logs in results/logs/, which find_missing.py matches on and
+# would otherwise count as done.  Those were produced with the ungated mutation
+# and with the cognitive step inert, so they must not be reused.
+EXPLORE_PARAMS = ["--param", "stagnation_trigger=50"]
+
+
+def extra_for(algo: str, extra: list[str]) -> list[str]:
+    """Append the explicit Explore parameters when *algo* includes Explore."""
+    return extra + EXPLORE_PARAMS if "Explore" in algo else extra
 
 # ── Fixed APV/SWU probe (group "APVX", opt-in) ───────────────────────────────
 #
@@ -168,7 +208,7 @@ APVX_V_EXPLORE = [0.0, 0.5, 1.0]        # 0.0 is the unchanged-operator control
 # Groups that are never part of the default plan; request them with --groups.
 OPT_IN_GROUPS = {"APVX"}
 
-STATIC_TOPOS = ["Tree", "Mesh", "Torus", "FreeScale"]
+STATIC_TOPOS = ["Ring", "Tree", "Mesh", "Torus", "FreeScale"]
 DYN_TOPOS    = ["DynSim", "DynOpp", "DynMix"]
 
 # ── Parameter sweep (design "C") ─────────────────────────────────────────────
@@ -270,14 +310,14 @@ def build_experiments(
     """
     probs = problems or PROBLEMS
     all_groups: dict[str, list[Experiment]] = {
-        "BASE": [Experiment("BASE", algo, prob)
+        "BASE": [Experiment("BASE", algo, prob, extra_for(algo, []))
                  for prob in probs for algo in BASELINE_ALGOS],
         "STAT": [Experiment("STAT", f"{algo}-{topo}", prob,
-                            ["--neighbours-radius", str(r)])
+                            extra_for(algo, ["--neighbours-radius", str(r)]))
                  for prob, algo, topo, r
                  in product(probs, TOPO_ALGOS, STATIC_TOPOS, RADII)],
         "DYN":  [Experiment("DYN", f"{algo}-{topo}", prob,
-                            ["--param", f"neighbor_pct={pct}"])
+                            extra_for(algo, ["--param", f"neighbor_pct={pct}"]))
                  for prob, algo, topo, pct
                  in product(probs, TOPO_ALGOS, DYN_TOPOS, PCTS)],
         "APVX": [Experiment("APVX", algo, prob,
