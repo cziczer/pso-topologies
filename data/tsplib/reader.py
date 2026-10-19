@@ -7,7 +7,11 @@ from data.loader import InstanceLoader, TSPInstance
 
 @numba.njit(cache=True)
 def _build_distance_matrix(coords: np.ndarray) -> np.ndarray:
-    """Euclidean distance matrix via Numba JIT — O(n²) inner loop."""
+    """Euclidean distance matrix via Numba JIT — O(n²) inner loop.
+
+    Correct for EDGE_WEIGHT_TYPE: EUC_2D only.  Never use it for GEO instances;
+    see _build_geo_distance_matrix for why.
+    """
     n = coords.shape[0]
     dist = np.empty((n, n), dtype=np.float64)
     for i in range(n):
@@ -16,6 +20,53 @@ def _build_distance_matrix(coords: np.ndarray) -> np.ndarray:
             dy = coords[i, 1] - coords[j, 1]
             dist[i, j] = np.sqrt(dx * dx + dy * dy)
     return dist
+
+
+def _build_geo_distance_matrix(coords: np.ndarray) -> np.ndarray:
+    """Great-circle distance matrix for EDGE_WEIGHT_TYPE: GEO.
+
+    Implements the TSPLIB95 GEO formula exactly, including its quirks: the
+    coordinates are DDD.MM (degrees and *minutes*, not decimal degrees), PI is
+    the truncated 3.141592, the earth radius is 6378.388 km, and the result is
+    truncated to an integer.
+
+    This exists because the reader previously applied plain Euclidean distance
+    to every instance regardless of its header.  On DDD.MM values that
+    understates GEO distances by about two orders of magnitude -- the first node
+    pair of ali535 came out as 20.67 instead of 2264 -- and tours measured over
+    the resulting matrix were ~98.8 % "shorter" than the published optimum,
+    which is impossible.  Every ali535 and gr666 result produced before this
+    function existed is meaningless.
+    """
+    PI = 3.141592
+    RRR = 6378.388
+
+    degrees = np.trunc(coords)
+    minutes = coords - degrees
+    radians = PI * (degrees + 5.0 * minutes / 3.0) / 180.0
+
+    lat = radians[:, 0]
+    lon = radians[:, 1]
+
+    q1 = np.cos(lon[:, None] - lon[None, :])
+    q2 = np.cos(lat[:, None] - lat[None, :])
+    q3 = np.cos(lat[:, None] + lat[None, :])
+
+    inner = 0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)
+    # Guard against |inner| drifting just outside [-1, 1] through rounding.
+    inner = np.clip(inner, -1.0, 1.0)
+
+    dist = np.trunc(RRR * np.arccos(inner) + 1.0)
+    np.fill_diagonal(dist, 0.0)
+    return dist
+
+
+# EDGE_WEIGHT_TYPE -> matrix builder.  Anything absent here is rejected at load
+# time rather than silently measured with the wrong metric.
+_DISTANCE_BUILDERS = {
+    "EUC_2D": _build_distance_matrix,
+    "GEO": _build_geo_distance_matrix,
+}
 
 
 class TSPLibReader(InstanceLoader):
@@ -42,7 +93,20 @@ class TSPLibReader(InstanceLoader):
         nodes = sorted(problem.node_coords.keys())
         coords = np.array([problem.node_coords[n] for n in nodes], dtype=np.float64)
 
-        distance_matrix = _build_distance_matrix(coords)
+        weight_type = (problem.edge_weight_type or "").strip().upper()
+        try:
+            build = _DISTANCE_BUILDERS[weight_type]
+        except KeyError:
+            raise ValueError(
+                f"Instance '{name}' declares EDGE_WEIGHT_TYPE: "
+                f"{weight_type or '<missing>'}, which this reader does not "
+                f"implement.  Supported: {', '.join(sorted(_DISTANCE_BUILDERS))}.  "
+                "Add a builder rather than falling back to Euclidean — using the "
+                "wrong metric silently produces results that look plausible but "
+                "are not comparable to published optima."
+            ) from None
+
+        distance_matrix = build(coords)
 
         return TSPInstance(
             name=name,

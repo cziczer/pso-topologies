@@ -45,7 +45,8 @@ import statistics
 import sys
 from pathlib import Path
 
-DYN_GROUPS = set("HIJKLM")
+# Dynamic-topology group label in the active plan (was H-M in the retired one).
+DYN_GROUPS = {"DYN"}
 
 
 def _load_runner():
@@ -82,7 +83,7 @@ def completed_costs() -> dict[str, float]:
     return done
 
 
-def build_cost_model(plan, done: dict[str, float]):
+def build_cost_model(rp, plan, done: dict[str, float]):
     """Median hours per (problem, family), with per-problem and global fallbacks."""
     buckets: dict[tuple[str, str], list[float]] = collections.defaultdict(list)
     per_problem: dict[str, list[float]] = collections.defaultdict(list)
@@ -98,12 +99,17 @@ def build_cost_model(plan, done: dict[str, float]):
     overall = statistics.median(measured) if measured else 1.0
 
     def estimate(exp) -> float:
-        # Dynamic topologies (groups H-M) have no completed runs at all, so they
-        # fall through to the per-problem median.  Treat that as a floor, not a
-        # measurement -- see --dyn-factor.
-        return (fine.get((exp.problem, family(exp.algo)))
+        # Dynamic topologies have no completed runs at all, so they fall through
+        # to the per-problem median.  Treat that as a floor, not a measurement --
+        # see --dyn-factor.
+        base = (fine.get((exp.problem, family(exp.algo)))
                 or coarse.get(exp.problem)
                 or overall)
+        # Every measurement above comes from a 10-repetition run.  Cost is
+        # essentially linear in repetitions (they run sequentially in one
+        # process), so rescale when this config uses a different count --
+        # otherwise large instances, now at 5 repetitions, are estimated 2x high.
+        return base * exp.repetitions() / rp.REPS_DEFAULT
 
     return estimate
 
@@ -128,7 +134,9 @@ def main() -> None:
                     help="Only consider problems with dimension <= D "
                          "(default: the runner's active scope)")
     ap.add_argument("--all-problems", action="store_true",
-                    help="Consider all six problems regardless of the active scope")
+                    help="Consider every instance in ALL_PROBLEMS")
+    ap.add_argument("--problems", nargs="+", metavar="P",
+                    help="Restrict to these instances, e.g. --problems ali535 gr666")
     ap.add_argument("--groups", nargs="+", metavar="G",
                     help="Restrict to specific groups, e.g. --groups H I J")
     ap.add_argument("--tasks", type=int, default=12, metavar="N",
@@ -145,7 +153,12 @@ def main() -> None:
 
     rp = _load_runner()
 
-    if args.all_problems:
+    if args.problems:
+        unknown = [p for p in args.problems if p not in rp.ALL_PROBLEMS]
+        if unknown:
+            sys.exit(f"unknown problem(s): {', '.join(unknown)}")
+        problems = list(args.problems)
+    elif args.all_problems:
         problems = list(rp.ALL_PROBLEMS)
     elif args.max_dim is not None:
         problems = [p for p in rp.ALL_PROBLEMS if rp.PROBLEM_DIMS[p] <= args.max_dim]
@@ -153,9 +166,9 @@ def main() -> None:
         problems = list(rp.PROBLEMS)
 
     plan_scoped = rp.build_experiments(problems=problems, groups=args.groups)
-    plan_full = rp.build_experiments(problems=rp.ALL_PROBLEMS)
+    plan_full = rp.build_legacy_experiments(problems=rp.ALL_PROBLEMS)
     done = completed_costs()
-    estimate = build_cost_model(plan_full, done)
+    estimate = build_cost_model(rp, plan_full, done)
 
     def cost_of(exp) -> float:
         c = estimate(exp)
@@ -231,6 +244,7 @@ def main() -> None:
                         "algo": exp.algo,
                         "problem": exp.problem,
                         "extra": exp.extra,
+                        "reps": exp.repetitions(),
                     },
                 }) + "\n")
         print(f"\nWrote {len(ordered)} pending configs -> {out}")
