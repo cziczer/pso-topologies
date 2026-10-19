@@ -33,6 +33,20 @@ class CognitiveMixin(DefaultOperatorsMixin):
         self.personal_bests: list[list[int]] = [p.copy() for p in self.particles]
         self.personal_best_lengths: list[float] = self.lengths.copy()
 
+    def cognitive_step(
+        self, particle: list[int], length: float, idx: int
+    ) -> tuple[list[int], float]:
+        """OX crossover with this particle's personal best, gated as elsewhere."""
+        cog, cog_l = self.crossover(particle, self.personal_bests[idx])
+        if cog_l < length or np.random.rand() < 0.1:
+            return cog, cog_l
+        return particle, length
+
+    def update_personal_best(self, particle: list[int], length: float, idx: int) -> None:
+        if length < self.personal_best_lengths[idx]:
+            self.personal_best_lengths[idx] = length
+            self.personal_bests[idx] = particle.copy()
+
     def run(self) -> "RunResult":  # type: ignore[override]
         """Run loop with cognitive + social crossover at each particle update.
 
@@ -63,9 +77,7 @@ class CognitiveMixin(DefaultOperatorsMixin):
                 tmp_l = self.lengths[i]
 
                 # --- Cognitive step: pull toward personal best ---------------
-                cog, cog_l = self.crossover(particle, self.personal_bests[i])
-                if cog_l < tmp_l or np.random.rand() < 0.1:
-                    particle, tmp_l = cog, cog_l
+                particle, tmp_l = self.cognitive_step(particle, tmp_l, i)
 
                 # --- Social step: pull toward neighbourhood best -------------
                 guide = self.get_neighbourhood_best(i)
@@ -77,9 +89,7 @@ class CognitiveMixin(DefaultOperatorsMixin):
                 particle, tmp_l = self.mutate(particle)
 
                 # --- Update personal best ------------------------------------
-                if tmp_l < self.personal_best_lengths[i]:
-                    self.personal_best_lengths[i] = tmp_l
-                    self.personal_bests[i] = particle.copy()
+                self.update_personal_best(particle, tmp_l, i)
 
                 # --- Track swarm-wide best -----------------------------------
                 if tmp_l < self.best_length:

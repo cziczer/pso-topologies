@@ -43,6 +43,26 @@ class DefaultOperatorsMixin:
         else:
             return candidate2, l2
 
+    def cognitive_step(
+        self, particle: list[int], length: float, idx: int
+    ) -> tuple[list[int], float]:
+        """Cognitive (personal-best) pull.  No-op for the default operator.
+
+        This is a hook rather than inline code so that every run loop can apply
+        the cognitive component.  CognitiveMixin used to implement it only inside
+        its own run(), which meant it vanished silently whenever another mixin
+        overrode run(): PSO-Cognitive-Explore was behaviourally identical to
+        PSO-Explore, down to the decimal, on every seed.
+
+        Consumes no randomness here, so adding the call to a run loop cannot
+        change the behaviour of operators that do not override it.
+        """
+        return particle, length
+
+    def update_personal_best(self, particle: list[int], length: float, idx: int) -> None:
+        """Record a new personal best.  No-op for the default operator."""
+        return None
+
     def mutate(self, path: list[int]) -> tuple[list[int], float]:
         """Swap mutation: randomly exchange two cities in *path*.
 

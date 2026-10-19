@@ -98,13 +98,30 @@ class StagnationExploreMixin:
                 particle = self.particles[i]
                 tmp_l = self.lengths[i]
 
-                # --- Social crossover + mutation (operator mixin hooks) ------
+                # --- Cognitive, social crossover + mutation (operator hooks) --
+                # The cognitive hook is a no-op unless CognitiveMixin is composed
+                # in, and it consumes no randomness in that case, so operators
+                # without a cognitive component are unaffected.
+                particle, tmp_l = self.cognitive_step(particle, tmp_l, i)
+
                 guide = self.get_neighbourhood_best(i)
                 new_one, new_l = self.crossover(particle, guide)
                 if new_l < tmp_l or np.random.rand() < 0.1:
                     particle, tmp_l = new_one, new_l
 
-                particle, tmp_l = self.mutate(particle)
+                # Gate the mutation exactly as the crossover above is gated.  It
+                # used to be accepted unconditionally, so every particle took a
+                # random swap every iteration with nothing to pull it back: the
+                # swarm random-walked and best_length never left the greedy
+                # start.  PSOBase.run() has an equivalent gate at the same point
+                # -- buggy (it tests the stale crossover new_l and assigns
+                # new_one), but its effect is to revert an unhelpful mutation, so
+                # the baseline hill-climbs where this loop did not.
+                mutated, mut_l = self.mutate(particle)
+                if mut_l < tmp_l or np.random.rand() < 0.1:
+                    particle, tmp_l = mutated, mut_l
+
+                self.update_personal_best(particle, tmp_l, i)
 
                 # --- Personal best and stagnation counter -------------------
                 if tmp_l < self._pb_len[i]:
