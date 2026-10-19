@@ -67,9 +67,72 @@ def family(algo: str) -> str:
     return "Default"
 
 
+# Algorithm-affecting command-line arguments, mapped to the key they appear
+# under in a result file's algorithm.config.
+_ARG_TO_CONFIG = {
+    "--neighbours-radius": "neighbours_radius",
+    "--particles": "num_particles",
+    "--max-iter": "max_iter",
+    "--stagnation-window": "stagnation_window",
+}
+
+
+def _cmd_params(cmd: str) -> dict[str, str]:
+    """Extract the algorithm parameters a command string sets explicitly."""
+    toks = cmd.split()
+    params: dict[str, str] = {}
+    for i, tok in enumerate(toks):
+        if tok in _ARG_TO_CONFIG and i + 1 < len(toks):
+            params[_ARG_TO_CONFIG[tok]] = toks[i + 1]
+        elif tok == "--param" and i + 1 < len(toks) and "=" in toks[i + 1]:
+            key, _, val = toks[i + 1].partition("=")
+            params[key] = val
+    return params
+
+
+def _owns(result_path: str, cmd: str) -> bool:
+    """Does the result file at *result_path* belong to *cmd*?
+
+    Compares every parameter the command sets explicitly against the file's
+    algorithm.config.  Only the keys present in the command are checked, so a
+    command that relies on a default is not rejected for it.
+    """
+    try:
+        with open(result_path) as fh:
+            cfg = (json.load(fh).get("algorithm") or {}).get("config") or {}
+    except (OSError, ValueError):
+        return False
+    for key, raw in _cmd_params(cmd).items():
+        if key not in cfg:
+            return False
+        try:
+            if abs(float(cfg[key]) - float(raw)) > 1e-9:
+                return False
+        except (TypeError, ValueError):
+            if str(cfg[key]) != raw:
+                return False
+    return True
+
+
 def completed_costs() -> dict[str, float]:
-    """Map successful command string -> elapsed hours, from results/logs/*.log."""
-    done: dict[str, float] = {}
+    """Map successful command string -> elapsed hours, from results/logs/*.log.
+
+    A command counts as done only when its result file still exists AND is
+    attributable to it.  Trusting the log alone is wrong: until 2026-10-19
+    main.py named results <problem>_<algorithm>_<utc-second>.json, which encodes
+    neither the neighbourhood radius nor neighbor_pct nor any operator
+    parameter.  Sibling configs of the same algorithm on the same instance
+    therefore wrote to the SAME path and silently overwrote one another, and
+    both logs still said exit_code: 0.  Measured over the 1 098 completed logs on
+    disk: 1 016 distinct paths, 76 of them claimed more than once, **82 results
+    lost**.  Counting those as done would skip them forever.
+
+    Where several logs claim one path, the file's algorithm.config decides which
+    command owns it; the rest are reported pending.  If nothing matches, or more
+    than one does, every claimant is treated as pending -- recomputing a config
+    costs compute, keeping a phantom one costs the experiment.
+    """
+    claims: dict[str, list[tuple[str, float]]] = collections.defaultdict(list)
     for path in glob.glob("results/logs/*.log"):
         try:
             text = Path(path).read_text(errors="replace")
@@ -78,8 +141,30 @@ def completed_costs() -> dict[str, float]:
         cmd = re.search(r"^CMD: (.+)$", text, re.M)
         code = re.search(r"^exit_code: (-?\d+)$", text, re.M)
         secs = re.search(r"^elapsed_s: ([\d.]+)$", text, re.M)
-        if cmd and code and code.group(1) == "0":
-            done[cmd.group(1).strip()] = float(secs.group(1)) / 3600 if secs else 0.0
+        out = re.search(r"^Output\s*:\s*(\S+)$", text, re.M)
+        if not (cmd and code and code.group(1) == "0"):
+            continue
+        hours = float(secs.group(1)) / 3600 if secs else 0.0
+        # Logs predating the Output line cannot be cross-checked; trust them.
+        key = out.group(1) if out else f"<no-output-line>:{cmd.group(1).strip()}"
+        claims[key].append((cmd.group(1).strip(), hours))
+
+    done: dict[str, float] = {}
+    for result_path, claimants in claims.items():
+        if result_path.startswith("<no-output-line>:"):
+            for cmd, hours in claimants:
+                done[cmd] = hours
+            continue
+        if not Path(result_path).exists():
+            continue                      # result gone; every claimant pending
+        if len(claimants) == 1:
+            cmd, hours = claimants[0]
+            done[cmd] = hours
+            continue
+        owners = [(c, h) for c, h in claimants if _owns(result_path, c)]
+        if len(owners) == 1:
+            cmd, hours = owners[0]
+            done[cmd] = hours
     return done
 
 

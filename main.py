@@ -57,9 +57,32 @@ def resolve_problem(problem_name: str, data_root: str = "data") -> "TSPInstance"
 # ---------------------------------------------------------------------------
 
 def _default_output_path(problem_name: str, algorithm_name: str) -> Path:
+    """results/<problem>_<algorithm>_<utc>_<pid>.json
+
+    The name must carry something beyond problem, algorithm and a
+    whole-second timestamp.  Those three do not identify a config: the
+    neighbourhood radius, neighbor_pct and the operator parameters are all
+    absent from them, so sibling configs of the same algorithm on the same
+    instance collide.  Nothing warns -- the later process simply overwrites the
+    earlier file.
+
+    That stayed invisible while one array task ran many configs in sequence,
+    each `main.py` starting a second or more apart.  It became systematic with
+    one config per array task: every task of an array starts in the same second,
+    and the path is fixed at process start rather than at save time.  Measured on
+    job 21349067: 8 tasks completed, 4 files survived, all stamped
+    20261019T202216Z.  A 44-config array would have destroyed 26 of its results.
+
+    Microseconds alone would almost certainly be enough; the pid makes it
+    collision-proof across concurrent processes regardless of clock resolution.
+    The full config is inside the file, under algorithm.config, and the command
+    string is in the matching results/logs/*.log -- so the name only has to be
+    unique, not descriptive.
+    """
+    import os
     from datetime import datetime, timezone
-    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    return Path("results") / f"{problem_name}_{algorithm_name}_{ts}.json"
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
+    return Path("results") / f"{problem_name}_{algorithm_name}_{ts}_p{os.getpid()}.json"
 
 
 # ---------------------------------------------------------------------------
