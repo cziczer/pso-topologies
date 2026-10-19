@@ -6,18 +6,21 @@ concurrently using subprocess workers.  Results land in results/ as usual.
 
 Plan size
 ---------
-With the active problem scope (dimension <= MAX_PROBLEM_DIM) the plan is
-774 configs x 10 repetitions = 7 740 runs:
+The active plan ("design C") is 160 configs x 10 repetitions = 1 600 runs, over
+the four instances whose distances are computed correctly:
 
-    A      3 problems x 6 algorithms                        =  18
-    B-G    6 groups x 3 problems x 6 radii x 5 static topos = 540
-    H-M    6 groups x 3 problems x 4 pcts x 3 dyn topos     = 216
+    BASE   4 problems x 4 bare algorithms                   =  16
+    STAT   4 problems x 2 algos x 4 static topos x 3 radii  =  96
+    DYN    4 problems x 2 algos x 3 dyn topos x 2 pcts      =  48
 
-With all six problems (--all-problems) it is 1 548 configs (36 + 1080 + 432).
-Earlier revisions of this docstring claimed 1 782; that figure was never
-implemented -- it came from section comments assuming 6 neighbour_pct values and
-9 baseline algorithms, while the code has always had 4 and 6.  Count
-build_experiments() rather than trusting a comment.
+It deliberately omits everything measured to be broken -- APV, SWU, Explore and
+Cognitive-Explore when composed with a topology, the Ring topology, and the two
+GEO instances.  See the scope comments below for the numbers behind each
+exclusion.  build_legacy_experiments() reproduces the retired 1548-config plan
+that the 941 existing results came from.
+
+Count build_experiments() rather than trusting a comment: a previous revision of
+this docstring claimed 1 782 configs, a figure that was never implemented.
 
 Usage
 -----
@@ -81,25 +84,143 @@ PROBLEM_DIMS = {
     "ali535": 535, "gr666": 666, "pr1002": 1002,
 }
 
-# Active scope: instances larger than this are out of the study.
+# ── Problem scope ────────────────────────────────────────────────────────────
 #
-# The three largest instances dominate cost -- measured medians per config are
-# berlin52 0.76 h, bier127 1.65 h, a280 3.72 h, but ali535 9.19 h, gr666 12.92 h
-# and pr1002 21.62 h, with a pr1002 worst case of 58.5 h.  They accounted for
-# ~91 % of the remaining compute, and their long tails are what pushed array
-# tasks past their walltime.  Excluding them is a deliberate scope reduction,
-# not a bug: pass --all-problems to run the full six again.
-MAX_PROBLEM_DIM = 500
+# All six instances are in scope.
+#
+# ali535 and gr666 were excluded until 2026-10-03: both declare
+# EDGE_WEIGHT_TYPE: GEO, while data/tsplib/reader.py applied plain Euclidean
+# distance to every instance regardless of its header.  On DDD.MM coordinates
+# that understates GEO distances by ~2 orders of magnitude, and tours came out
+# ~98.8 % "shorter" than the published optimum.  reader.py now dispatches on
+# EDGE_WEIGHT_TYPE and implements the TSPLIB GEO formula; it was verified to
+# agree exactly (max error 0.0) with tsplib95's own get_weight() on both
+# instances, and a greedy tour now sits 25.1 % / 24.7 % above the published
+# optima, in line with the EUC_2D instances at 19-22 %.
+#
+# WARNING: every ali535 and gr666 result produced BEFORE that fix was measured
+# with the wrong metric and must not be pooled with anything.  They are not
+# silently reused -- the fixed plan runs those instances at 5 repetitions
+# (see repetitions_for) so the command strings differ and find_missing.py
+# treats them as pending -- but the old JSONs are still sitting in results/.
+PROBLEMS = list(ALL_PROBLEMS)
+EXCLUDED_PROBLEMS: list[str] = []
 
-PROBLEMS = [p for p in ALL_PROBLEMS if PROBLEM_DIMS[p] <= MAX_PROBLEM_DIM]
-EXCLUDED_PROBLEMS = [p for p in ALL_PROBLEMS if p not in PROBLEMS]
+# ── Operator scope ───────────────────────────────────────────────────────────
+#
+# Measured on berlin52 (optimum 7542; the deterministic greedy start sits at a
+# 8.49 % gap).  Median gap to optimum per exact algorithm name:
+#
+#   works:   PSO 0.03 %, PSO-Cognitive 0.03 %, PSO-Mesh 0.03 %, PSO-Torus 0.03 %,
+#            PSO-FreeScale 0.03 %, PSO-Tree 0.68 %, PSO-Cognitive-FreeScale 0.03 %,
+#            PSO-Cognitive-Mesh 0.32 %, PSO-Cognitive-Tree 0.92 %,
+#            PSO-Cognitive-Torus 1.29 %
+#   broken:  every APV and every SWU variant, 8.49 % -- i.e. exactly the greedy
+#            start, with iterations_run pinned to the 2601 early-stop floor;
+#            every Explore-with-topology and Cognitive-Explore-with-topology,
+#            8.49 %, although BARE PSO-Explore reaches 3.26 % and bare
+#            PSO-Cognitive-Explore 4.42 % -- the mixin does not compose with the
+#            topology mixins;
+#            PSO-Ring 8.08 %, while Mesh/Torus/FreeScale all reach 0.03 % -- the
+#            Ring topology is broken independently of any operator.
+#
+# So: APV and SWU are dropped entirely, Ring is dropped, and Explore /
+# Cognitive-Explore survive only as bare baselines.  Restore them here once the
+# three defects are fixed.
+TOPO_ALGOS     = ["PSO", "PSO-Cognitive"]
+BASELINE_ALGOS = ["PSO", "PSO-Cognitive", "PSO-Explore", "PSO-Cognitive-Explore"]
 
-STATIC_TOPOS = ["Ring", "Tree", "Mesh", "Torus", "FreeScale"]
+BROKEN_ALGOS  = ["PSO-APV", "PSO-SWU"]
+BROKEN_TOPOS  = ["Ring"]
+
+# ── Fixed APV/SWU probe (group "APVX", opt-in) ───────────────────────────────
+#
+# APV and SWU returned their greedy input tour because of three separate
+# defects, all fixed on 2026-10-19 (see pso/operators/_numba_kernels.py):
+#
+#   1. no acceptance test -- the particle took every candidate unconditionally,
+#      where PSOBase.run() accepts only an improvement, or 10 % of the time;
+#   2. no bound on ||v||_1, which IS the expected number of transpositions per
+#      iteration, so the step reached ~n swaps on an n-city tour and resampled
+#      the tour instead of moving it;
+#   3. no exploration term.  This one is structural: the velocity's support is
+#      exactly the transpositions leading to pbest/gbest, so the swarm's best
+#      particle (whose position IS gbest) had ||v||_1 = 0.0000 and never moved,
+#      and no particle could propose a tour outside the convex hull of the
+#      initial swarm.  Measured: 0 of 12 000 candidates beat the greedy start.
+#
+# Fixes 1 and 2 are unconditional.  Fix 3 is the v_explore parameter, default
+# 0.0 -- i.e. the operator as published -- so it must be passed explicitly here.
+# Passing it explicitly also keeps these command strings distinct from the 372
+# pre-fix APV/SWU logs in results/logs/, which find_missing.py would otherwise
+# match and skip.
+#
+# This group is a PARAMETER PROBE, not the final arm: a 2-seed, 40-particle,
+# 1500-iteration local run put the improvement over the greedy start at only
+# 0.3-0.6 % (best gap 7.86 % against 8.49 % for the untouched start), while
+# plain PSO reaches 0.03 % on the same instance.  Measure v_explore at real
+# settings on the three cheap instances before committing to all six.
+APVX_ALGOS = ["PSO-APV", "PSO-SWU"]
+APVX_PROBLEMS = ["berlin52", "bier127", "a280"]
+APVX_V_MAX = 2.0
+APVX_V_EXPLORE = [0.0, 0.5, 1.0]        # 0.0 is the unchanged-operator control
+
+# Groups that are never part of the default plan; request them with --groups.
+OPT_IN_GROUPS = {"APVX"}
+
+STATIC_TOPOS = ["Tree", "Mesh", "Torus", "FreeScale"]
 DYN_TOPOS    = ["DynSim", "DynOpp", "DynMix"]
-RADII        = [1, 2, 5, 10, 25, 50]
-PCTS         = [0.05, 0.10, 0.25, 0.50]
 
-COMMON = ["--repetitions", "10", "--particles", "1000", "--max-iter", "30000", "--quiet"]
+# ── Parameter sweep (design "C") ─────────────────────────────────────────────
+#
+# The neighbourhood-radius effect is real but saturates.  Median gap to optimum
+# over the working combinations:
+#
+#   problem   r=1     r=2     r=5     r=10    r=25    r=50
+#   berlin52  7.22 %  5.08 %  0.03 %  0.03 %  0.03 %  0.03 %
+#   bier127  10.16 %  9.07 %  8.00 %  8.15 %  8.24 %  8.06 %
+#   a280     19.98 % 19.98 % 18.92 % 17.54 % 17.41 % 17.62 %
+#   pr1002   20.53 % 20.53 % 20.53 % 20.53 % 20.53 % 20.42 %
+#
+# r=1 is clearly worst, the curve is flat from r=5 on, so {1, 5, 25} spans it:
+# one tight neighbourhood, one at the knee, one on the plateau.  10 and 50 are
+# redundant with 5 and 25.  PCTS is halved to its endpoints-plus-middle for the
+# same reason; it has no measurements yet, the dynamic arm having never run.
+RADII = [1, 5, 25]
+PCTS  = [0.05, 0.25]
+
+# ── Repetitions per config ───────────────────────────────────────────────────
+#
+# Large instances get half the repetitions.  A config is N *sequential*
+# repetitions inside ONE process, so it cannot be split across SLURM tasks:
+# per-config wall time is therefore hard-capped by the cluster's 72 h timelimit,
+# and no amount of repacking helps a config that needs longer.
+#
+# Measured over the 113 completed pr1002 configs at 10 repetitions: median
+# 21.6 h, max 58.5 h, and the slowest family (Cognitive) a 44.9 h median.  That
+# leaves only ~13 h of margin under 72 h — too thin for the dynamic-topology
+# configs, which have never run and could be slower.  Halving to 5 repetitions
+# brings the Cognitive median to ~22 h and the worst case to ~29 h.
+#
+# Note the trade-off: 5 repetitions is less statistical power exactly where
+# variance matters most, and it makes pr1002 results not directly poolable with
+# the 10-repetition results from the other three instances.  Report pr1002's n
+# separately in any aggregate.
+REPS_DEFAULT = 10
+REPS_LARGE = 5
+LARGE_PROBLEM_DIM = 500
+
+
+def repetitions_for(problem: str) -> int:
+    """Repetition count for *problem*: fewer for instances above 500 cities."""
+    return REPS_LARGE if PROBLEM_DIMS.get(problem, 0) > LARGE_PROBLEM_DIM else REPS_DEFAULT
+
+
+# Everything after --repetitions.  Kept separate so --repetitions stays in its
+# historical position in the command string: for the instances that still use 10
+# repetitions the generated command is byte-identical to the one in the existing
+# results/logs/*.log, which is what lets find_missing.py recognise them as done.
+COMMON_TAIL = ["--particles", "1000", "--max-iter", "30000", "--quiet"]
 
 
 @dataclass
@@ -108,79 +229,119 @@ class Experiment:
     algo: str
     problem: str
     extra: list[str] = field(default_factory=list)
+    reps: int | None = None          # None -> repetitions_for(problem)
+
+    def repetitions(self) -> int:
+        return self.reps if self.reps is not None else repetitions_for(self.problem)
 
     def to_cmd(self) -> list[str]:
         return (
             ["uv", "run", "main.py", "-a", self.algo, "-p", f"tsplib-{self.problem}"]
-            + COMMON
+            + ["--repetitions", str(self.repetitions())]
+            + COMMON_TAIL
             + self.extra
         )
 
     def label(self) -> str:
         extra_str = " ".join(self.extra) if self.extra else ""
-        return f"[{self.group}] {self.algo} @ {self.problem} {extra_str}".strip()
-
-
-def _static_block(group: str, algo_prefix: str, problems: list[str]) -> list[Experiment]:
-    exps = []
-    for prob, r, topo in product(problems, RADII, STATIC_TOPOS):
-        exps.append(Experiment(
-            group=group,
-            algo=f"{algo_prefix}-{topo}",
-            problem=prob,
-            extra=["--neighbours-radius", str(r)],
-        ))
-    return exps
-
-
-def _dyn_block(group: str, algo_prefix: str, problems: list[str]) -> list[Experiment]:
-    exps = []
-    for prob, pct, topo in product(problems, PCTS, DYN_TOPOS):
-        exps.append(Experiment(
-            group=group,
-            algo=f"{algo_prefix}-{topo}",
-            problem=prob,
-            extra=["--param", f"neighbor_pct={pct}"],
-        ))
-    return exps
+        reps = f"n={self.repetitions()}"
+        return f"[{self.group}] {self.algo} @ {self.problem} {reps} {extra_str}".strip()
 
 
 def build_experiments(
     problems: list[str] | None = None,
     groups: list[str] | None = None,
 ) -> list[Experiment]:
+    """Build the active experiment plan: 160 configs over 4 problems.
+
+    Three groups, which replace the old A-M lettering:
+
+        BASE  bare algorithms on the Global topology, including Explore and
+              Cognitive-Explore -- which work bare but not with a topology
+        STAT  TOPO_ALGOS x STATIC_TOPOS x RADII
+        DYN   TOPO_ALGOS x DYN_TOPOS x PCTS
+        APVX  the fixed APV/SWU operators, swept over v_explore.  Opt-in: it is
+              excluded unless named in *groups*, so the default plan is
+              unchanged.
+
+    Per problem that is 4 + (2x4x3) + (2x3x2) = 40 configs, so 160 over the four
+    valid instances.  The retired 1548-config plan that produced the 941 existing
+    results is still reproducible via build_legacy_experiments().
+    """
     probs = problems or PROBLEMS
-    all_groups: dict[str, list[Experiment]] = {}
+    all_groups: dict[str, list[Experiment]] = {
+        "BASE": [Experiment("BASE", algo, prob)
+                 for prob in probs for algo in BASELINE_ALGOS],
+        "STAT": [Experiment("STAT", f"{algo}-{topo}", prob,
+                            ["--neighbours-radius", str(r)])
+                 for prob, algo, topo, r
+                 in product(probs, TOPO_ALGOS, STATIC_TOPOS, RADII)],
+        "DYN":  [Experiment("DYN", f"{algo}-{topo}", prob,
+                            ["--param", f"neighbor_pct={pct}"])
+                 for prob, algo, topo, pct
+                 in product(probs, TOPO_ALGOS, DYN_TOPOS, PCTS)],
+        "APVX": [Experiment("APVX", algo, prob,
+                            ["--param", f"v_max={APVX_V_MAX}",
+                             "--param", f"v_explore={ve}"])
+                 for prob, algo, ve
+                 in product([p for p in probs if p in APVX_PROBLEMS],
+                            APVX_ALGOS, APVX_V_EXPLORE)],
+    }
 
-    # A — Baselines (Global topology)
-    a = []
-    for prob in probs:
-        for algo in ["PSO", "PSO-Cognitive", "PSO-APV", "PSO-SWU",
-                     "PSO-Explore", "PSO-Cognitive-Explore"]:
-            a.append(Experiment("A", algo, prob))
-    all_groups["A"] = a
-
-    all_groups["B"] = _static_block("B", "PSO",                  probs)
-    all_groups["C"] = _static_block("C", "PSO-Cognitive",        probs)
-    all_groups["D"] = _static_block("D", "PSO-APV",              probs)
-    all_groups["E"] = _static_block("E", "PSO-SWU",              probs)
-    all_groups["F"] = _static_block("F", "PSO-Explore",          probs)
-    all_groups["G"] = _static_block("G", "PSO-Cognitive-Explore",probs)
-
-    all_groups["H"] = _dyn_block("H", "PSO",                   probs)
-    all_groups["I"] = _dyn_block("I", "PSO-Cognitive",         probs)
-    all_groups["J"] = _dyn_block("J", "PSO-APV",               probs)
-    all_groups["K"] = _dyn_block("K", "PSO-SWU",               probs)
-    all_groups["L"] = _dyn_block("L", "PSO-Explore",           probs)
-    all_groups["M"] = _dyn_block("M", "PSO-Cognitive-Explore",  probs)
-
-    selected = groups or list(all_groups.keys())
+    selected = groups or [g for g in all_groups if g not in OPT_IN_GROUPS]
     result = []
     for g in selected:
         if g not in all_groups:
             print(f"Warning: unknown group '{g}', skipping", file=sys.stderr)
             continue
         result.extend(all_groups[g])
+    return result
+
+
+def build_legacy_experiments(
+    problems: list[str] | None = None,
+    groups: list[str] | None = None,
+) -> list[Experiment]:
+    """The retired 1548-config plan (groups A-M), kept for reproducibility.
+
+    This is the plan the 941 completed results came from.  It sweeps all six
+    operator families over all six problems, so it includes every combination
+    later shown to be broken (APV, SWU, Explore-with-topology, Ring) and the two
+    GEO instances whose distances are computed wrongly.  Do not submit it; it is
+    here so existing result files remain explicable.
+    """
+    probs = problems or ALL_PROBLEMS
+    legacy_algos = ["PSO", "PSO-Cognitive", "PSO-APV", "PSO-SWU",
+                    "PSO-Explore", "PSO-Cognitive-Explore"]
+    legacy_static = ["Ring", "Tree", "Mesh", "Torus", "FreeScale"]
+    legacy_radii = [1, 2, 5, 10, 25, 50]
+    legacy_pcts = [0.05, 0.10, 0.25, 0.50]
+
+    # reps=REPS_DEFAULT explicitly: the historical plan used 10 repetitions for
+    # every instance, before the large-instance reduction existed.  Without this
+    # the legacy commands would no longer match the logs they produced.
+    all_groups: dict[str, list[Experiment]] = {
+        "A": [Experiment("A", algo, prob, reps=REPS_DEFAULT)
+              for prob in probs for algo in legacy_algos],
+    }
+    for letter, algo in zip("BCDEFG", legacy_algos):
+        all_groups[letter] = [
+            Experiment(letter, f"{algo}-{topo}", prob,
+                       ["--neighbours-radius", str(r)], reps=REPS_DEFAULT)
+            for prob, r, topo in product(probs, legacy_radii, legacy_static)
+        ]
+    for letter, algo in zip("HIJKLM", legacy_algos):
+        all_groups[letter] = [
+            Experiment(letter, f"{algo}-{topo}", prob,
+                       ["--param", f"neighbor_pct={pct}"], reps=REPS_DEFAULT)
+            for prob, pct, topo in product(probs, legacy_pcts, DYN_TOPOS)
+        ]
+
+    selected = groups or list(all_groups.keys())
+    result = []
+    for g in selected:
+        if g in all_groups:
+            result.extend(all_groups[g])
     return result
 
 
@@ -282,6 +443,7 @@ def _load_retry(log_path: Path) -> list[Experiment]:
                 algo=r["algo"],
                 problem=r["problem"],
                 extra=r["extra"],
+                reps=r.get("reps"),      # absent in older logs -> per-problem rule
             ))
     return exps
 
@@ -303,10 +465,12 @@ def main() -> None:
                         help="Run only specific groups, e.g. --groups A B H")
     parser.add_argument("--problems", nargs="+", metavar="P",
                         help="Override problem list, e.g. --problems berlin52 bier127 "
-                             "(bypasses the MAX_PROBLEM_DIM scope)")
+                             "(bypasses the validity exclusions)")
     parser.add_argument("--all-problems", action="store_true",
-                        help=f"Include the instances excluded by MAX_PROBLEM_DIM="
-                             f"{MAX_PROBLEM_DIM}: {', '.join(EXCLUDED_PROBLEMS)}")
+                        help=f"Also include the GEO instances whose distances are "
+                             f"computed wrongly: {', '.join(EXCLUDED_PROBLEMS)}. "
+                             f"Their results are meaningless until "
+                             f"data/tsplib/reader.py implements GEO distance.")
     parser.add_argument("--retry-failed", metavar="LOG",
                         help="Re-run only the experiments listed in a failure log file")
     parser.add_argument("--start", type=int, default=0, metavar="N",
@@ -323,8 +487,8 @@ def main() -> None:
         all_experiments = build_experiments(problems=problems, groups=args.groups)
         if not args.problems and not args.all_problems and EXCLUDED_PROBLEMS:
             print(f"Problem scope: {', '.join(problems)}  "
-                  f"(excluding {', '.join(EXCLUDED_PROBLEMS)} "
-                  f"by MAX_PROBLEM_DIM={MAX_PROBLEM_DIM}; --all-problems overrides)")
+                  f"(excluding {', '.join(EXCLUDED_PROBLEMS)} — GEO instances, "
+                  f"distances computed wrongly; --all-problems overrides)")
 
     # 1-based inclusive slice: --start 1 --end 100 runs experiments 1..100
     start_idx = max(0, args.start - 1) if args.start else 0

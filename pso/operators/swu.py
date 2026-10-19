@@ -19,6 +19,11 @@ class SWUOperatorsMixin(APVOperatorsMixin):
             0, 1
         )
 
+    followed by the same ‖v‖₁ ≤ v_max scaling and acceptance test as APV.  The
+    similarity weighting slows the divergence described in APVOperatorsMixin but
+    does not bound it: measured on berlin52 the expected step still grew from 0.8
+    to 5.4 transpositions over 60 iterations.
+
     Higher similarity to a reference concentrates probability mass on the few
     remaining differences — exploration is focused, not scattered.
 
@@ -40,11 +45,13 @@ class SWUOperatorsMixin(APVOperatorsMixin):
         gbests_np: np.ndarray,
         velocities_np: np.ndarray,
         pbest_lengths_np: np.ndarray,
+        lengths_np: np.ndarray,
         dis_mat: np.ndarray,
         n: int,
         num_particles: int,
     ) -> tuple[np.ndarray, np.ndarray]:
         return swu_full_iteration(
             particles_np, pbests_np, gbests_np, velocities_np, pbest_lengths_np,
-            self._pairs, self._omega, self._c_p, self._c_g, dis_mat, n, num_particles,
+            lengths_np, self._pairs, self._omega, self._c_p, self._c_g,
+            self._v_max, self._v_explore, dis_mat, n, num_particles,
         )
