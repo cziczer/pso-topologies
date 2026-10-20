@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-DynSim -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 2964.76
+
+--- stdout ---
+Algorithm : PSO-Explore-DynSim
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Explore-DynSim_20261019T210439_757319Z_p392671.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Explore-DynSim_20261019T210439_757319Z_p392671.json
+  best=7544.37  mean=7579.48  worst=7797.28  total_time=2963.4s

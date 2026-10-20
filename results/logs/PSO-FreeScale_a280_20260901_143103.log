@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-FreeScale -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 105495.42
+
+--- stdout ---
+Algorithm : PSO-FreeScale
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-FreeScale_20260831T071249Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-FreeScale_20260831T071249Z.json
+  best=2816.37  mean=2980.59  worst=3083.17  total_time=105494.4s

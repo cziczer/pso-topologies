@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Tree -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 72752.06
+
+--- stdout ---
+Algorithm : PSO-Explore-Tree
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-Tree_20261019T210447_161850Z_p116173.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-Tree_20261019T210447_161850Z_p116173.json
+  best=2839.88  mean=2903.81  worst=3029.11  total_time=72750.0s

@@ -1,0 +1,8 @@
+[berlin52] task 8/45: configs 9-9 of 46
+Retrying 46 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 9–9 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230440.log
+[   1/1  #9/46] OK   13992.7s  ETA 0:00:00  [STAT] PSO-Explore-Tree @ berlin52 n=10 --neighbours-radius 25 --param stagnation_trigger=50
+
+Finished in 3:53:12  —  1 OK, 0 FAILED.

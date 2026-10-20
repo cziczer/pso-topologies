@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynOpp -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 10528.58
+
+--- stdout ---
+Algorithm : PSO-DynOpp
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-DynOpp_20261004T182617Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-DynOpp_20261004T182617Z.json
+  best=122195.10  mean=126031.33  worst=128908.53  total_time=10527.5s

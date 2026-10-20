@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 42530.20
+
+--- stdout ---
+Algorithm : PSO-Cognitive
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive_20260830T215453Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive_20260830T215453Z.json
+  best=2971.85  mean=3026.73  worst=3069.67  total_time=42529.2s

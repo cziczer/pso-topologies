@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Tree -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 37177.12
+
+--- stdout ---
+Algorithm : PSO-Explore-Tree
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Explore-Tree_20261019T210445_436594Z_p116089.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Explore-Tree_20261019T210445_436594Z_p116089.json
+  best=123224.68  mean=125049.95  worst=126776.41  total_time=37174.7s

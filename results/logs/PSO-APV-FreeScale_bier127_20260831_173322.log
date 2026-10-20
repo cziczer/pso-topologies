@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV-FreeScale -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 48977.23
+
+--- stdout ---
+Algorithm : PSO-APV-FreeScale
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-APV-FreeScale_20260831T015706Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-APV-FreeScale_20260831T015706Z.json
+  best=133970.65  mean=133970.65  worst=133970.65  total_time=48976.2s

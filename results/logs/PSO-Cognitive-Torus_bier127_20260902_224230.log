@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Torus -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 12619.26
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Torus
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Torus_20260902T171212Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Torus_20260902T171212Z.json
+  best=127717.47  mean=129639.16  worst=131827.05  total_time=12618.3s

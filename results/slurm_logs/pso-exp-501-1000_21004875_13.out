@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 826–850 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161820.log
+[   1/25  #827/1548] OK   12225.1s  ETA 3 days, 9:30:02  [F] PSO-Explore-Ring @ a280 --neighbours-radius 5
+[   2/25  #829/1548] OK   12245.8s  ETA 1 day, 15:07:06  [F] PSO-Explore-Mesh @ a280 --neighbours-radius 5
+[   3/25  #832/1548] OK   12261.9s  ETA 1 day, 0:58:40  [F] PSO-Explore-Ring @ a280 --neighbours-radius 10
+[   4/25  #828/1548] OK   12538.4s  ETA 18:17:06  [F] PSO-Explore-Tree @ a280 --neighbours-radius 5
+[   5/25  #830/1548] OK   13596.8s  ETA 15:06:27  [F] PSO-Explore-Torus @ a280 --neighbours-radius 5
+[   6/25  #833/1548] OK   13660.0s  ETA 12:00:56  [F] PSO-Explore-Tree @ a280 --neighbours-radius 10
+[   7/25  #834/1548] OK   12456.3s  ETA 17:37:46  [F] PSO-Explore-Mesh @ a280 --neighbours-radius 10
+[   8/25  #837/1548] OK   12293.0s  ETA 14:39:26  [F] PSO-Explore-Ring @ a280 --neighbours-radius 25
+[   9/25  #835/1548] OK   13441.1s  ETA 12:41:05  [F] PSO-Explore-Torus @ a280 --neighbours-radius 10
+[  10/25  #839/1548] OK   12896.4s  ETA 11:03:54  [F] PSO-Explore-Mesh @ a280 --neighbours-radius 25
+[  11/25  #826/1548] OK   36529.5s  ETA 12:54:52  [F] PSO-Explore-FreeScale @ a280 --neighbours-radius 2
+[  12/25  #838/1548] OK   22981.7s  ETA 11:00:26  [F] PSO-Explore-Tree @ a280 --neighbours-radius 25
+[  13/25  #842/1548] OK   12375.7s  ETA 9:45:34  [F] PSO-Explore-Ring @ a280 --neighbours-radius 50
+[  14/25  #840/1548] OK   14807.7s  ETA 8:37:07  [F] PSO-Explore-Torus @ a280 --neighbours-radius 25
+[  15/25  #843/1548] OK   22882.0s  ETA 9:09:18  [F] PSO-Explore-Tree @ a280 --neighbours-radius 50
+[  16/25  #844/1548] OK   12986.5s  ETA 7:44:12  [F] PSO-Explore-Mesh @ a280 --neighbours-radius 50
+[  17/25  #845/1548] OK   17791.1s  ETA 7:06:25  [F] PSO-Explore-Torus @ a280 --neighbours-radius 50
+[  18/25  #831/1548] OK   60734.6s  ETA 6:33:38  [F] PSO-Explore-FreeScale @ a280 --neighbours-radius 5
+[  19/25  #847/1548] OK   32683.1s  ETA 6:19:51  [F] PSO-Explore-Ring @ ali535 --neighbours-radius 1
+[  20/25  #836/1548] OK   62735.0s  ETA 5:12:29  [F] PSO-Explore-FreeScale @ a280 --neighbours-radius 10
+[  21/25  #848/1548] OK   32682.7s  ETA 4:20:42  [F] PSO-Explore-Tree @ ali535 --neighbours-radius 1
+[  22/25  #849/1548] OK   32755.4s  ETA 3:06:58  [F] PSO-Explore-Mesh @ ali535 --neighbours-radius 1
+[  23/25  #850/1548] OK   32928.4s  ETA 2:06:31  [F] PSO-Explore-Torus @ ali535 --neighbours-radius 1
+[  24/25  #841/1548] OK   62675.5s  ETA 1:00:46  [F] PSO-Explore-FreeScale @ a280 --neighbours-radius 25
+[  25/25  #846/1548] OK   61879.6s  ETA 0:00:00  [F] PSO-Explore-FreeScale @ a280 --neighbours-radius 50
+
+Finished in 1 day, 3:45:42  —  25 OK, 0 FAILED.

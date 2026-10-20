@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Mesh -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 11580.63
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Mesh
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Explore-Mesh_20261019T210441_938411Z_p257408.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Explore-Mesh_20261019T210441_938411Z_p257408.json
+  best=123257.81  mean=124661.62  worst=125599.98  total_time=11577.0s

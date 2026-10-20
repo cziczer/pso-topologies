@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Torus -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 63581.08
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Torus
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Explore-Torus_20261019T210443_314334Z_p185897.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Explore-Torus_20261019T210443_314334Z_p185897.json
+  best=2789.61  mean=2865.36  worst=2931.13  total_time=63579.8s

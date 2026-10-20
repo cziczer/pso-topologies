@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 876–900 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161818.log
+[   1/25  #882/1548] OK   46253.9s  ETA 12 days, 20:21:33  [F] PSO-Explore-Ring @ gr666 --neighbours-radius 2
+[   2/25  #879/1548] OK   46308.2s  ETA 6 days, 3:55:45  [F] PSO-Explore-Mesh @ gr666 --neighbours-radius 1
+[   3/25  #877/1548] OK   46346.0s  ETA 3 days, 22:24:30  [F] PSO-Explore-Ring @ gr666 --neighbours-radius 1
+[   4/25  #878/1548] OK   46405.6s  ETA 2 days, 19:40:29  [F] PSO-Explore-Tree @ gr666 --neighbours-radius 1
+[   5/25  #883/1548] OK   46507.4s  ETA 2 days, 3:40:29  [F] PSO-Explore-Tree @ gr666 --neighbours-radius 2
+[   6/25  #880/1548] OK   46727.3s  ETA 1 day, 17:06:09  [F] PSO-Explore-Torus @ gr666 --neighbours-radius 1
+[   7/25  #881/1548] OK   48785.0s  ETA 1 day, 10:50:47  [F] PSO-Explore-FreeScale @ gr666 --neighbours-radius 1
+[   8/25  #876/1548] OK   82415.1s  ETA 2 days, 0:38:52  [F] PSO-Explore-FreeScale @ ali535 --neighbours-radius 50
+[   9/25  #884/1548] OK   46337.6s  ETA 1 day, 21:43:27  [F] PSO-Explore-Mesh @ gr666 --neighbours-radius 2
+[  10/25  #887/1548] OK   46390.8s  ETA 1 day, 14:39:54  [F] PSO-Explore-Ring @ gr666 --neighbours-radius 5
+[  11/25  #889/1548] OK   46416.1s  ETA 1 day, 8:55:46  [F] PSO-Explore-Mesh @ gr666 --neighbours-radius 5
+[  12/25  #885/1548] OK   46913.6s  ETA 1 day, 4:03:10  [F] PSO-Explore-Torus @ gr666 --neighbours-radius 2
+[  13/25  #888/1548] OK   46725.0s  ETA 23:54:20  [F] PSO-Explore-Tree @ gr666 --neighbours-radius 5
+[  14/25  #890/1548] OK   47063.5s  ETA 20:55:09  [F] PSO-Explore-Torus @ gr666 --neighbours-radius 5
+[  15/25  #886/1548] OK   70289.6s  ETA 21:35:57  [F] PSO-Explore-FreeScale @ gr666 --neighbours-radius 2
+[  16/25  #892/1548] OK   46301.4s  ETA 21:42:07  [F] PSO-Explore-Ring @ gr666 --neighbours-radius 10
+[  17/25  #894/1548] OK   45992.3s  ETA 18:11:15  [F] PSO-Explore-Mesh @ gr666 --neighbours-radius 10
+[  18/25  #893/1548] OK   47439.2s  ETA 15:08:56  [F] PSO-Explore-Tree @ gr666 --neighbours-radius 10
+[  19/25  #895/1548] OK   47597.2s  ETA 12:21:09  [F] PSO-Explore-Torus @ gr666 --neighbours-radius 10
+[  20/25  #897/1548] OK   46505.7s  ETA 9:53:08  [F] PSO-Explore-Ring @ gr666 --neighbours-radius 25
+[  21/25  #898/1548] OK   56332.6s  ETA 9:09:06  [F] PSO-Explore-Tree @ gr666 --neighbours-radius 25
+[  22/25  #891/1548] OK   94276.0s  ETA 6:41:34  [F] PSO-Explore-FreeScale @ gr666 --neighbours-radius 5
+[  23/25  #899/1548] OK   46320.9s  ETA 4:28:25  [F] PSO-Explore-Mesh @ gr666 --neighbours-radius 25
+[  24/25  #900/1548] OK   48647.8s  ETA 2:10:24  [F] PSO-Explore-Torus @ gr666 --neighbours-radius 25
+[  25/25  #896/1548] OK   96407.0s  ETA 0:00:00  [F] PSO-Explore-FreeScale @ gr666 --neighbours-radius 10
+
+Finished in 2 days, 4:40:39  —  25 OK, 0 FAILED.

@@ -1,0 +1,3 @@
+Running 50 experiments  (experiments 351–400 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260830_231639.log

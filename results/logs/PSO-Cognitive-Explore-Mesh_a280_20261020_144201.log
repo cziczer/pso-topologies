@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Mesh -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 56244.19
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Mesh
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Explore-Mesh_20261019T210443_014411Z_p185875.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Explore-Mesh_20261019T210443_014411Z_p185875.json
+  best=2772.07  mean=2851.94  worst=2952.58  total_time=56238.1s

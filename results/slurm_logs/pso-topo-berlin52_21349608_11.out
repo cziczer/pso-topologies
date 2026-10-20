@@ -1,0 +1,8 @@
+[berlin52] task 11/45: configs 12-12 of 46
+Retrying 46 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 12–12 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230440.log
+[   1/1  #12/46] OK   3438.2s  ETA 0:00:00  [STAT] PSO-Explore-Mesh @ berlin52 n=10 --neighbours-radius 25 --param stagnation_trigger=50
+
+Finished in 0:57:18  —  1 OK, 0 FAILED.

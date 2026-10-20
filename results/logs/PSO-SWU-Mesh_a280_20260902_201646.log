@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Mesh -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 2
+exit_code: 0
+elapsed_s: 3094.96
+
+--- stdout ---
+Algorithm : PSO-SWU-Mesh
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-SWU-Mesh_20260902T172511Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-SWU-Mesh_20260902T172511Z.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=3093.9s

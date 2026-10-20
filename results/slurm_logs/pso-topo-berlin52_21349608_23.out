@@ -1,0 +1,8 @@
+[berlin52] task 23/45: configs 24-24 of 46
+Retrying 46 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 24–24 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230444.log
+[   1/1  #24/46] OK   3575.8s  ETA 0:00:00  [DYN] PSO-Explore-DynMix @ berlin52 n=10 --param neighbor_pct=0.25 --param stagnation_trigger=50
+
+Finished in 0:59:35  —  1 OK, 0 FAILED.

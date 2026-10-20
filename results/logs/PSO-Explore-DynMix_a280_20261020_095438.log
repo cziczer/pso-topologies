@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-DynMix -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 39000.77
+
+--- stdout ---
+Algorithm : PSO-Explore-DynMix
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-DynMix_20261019T210438_586648Z_p202413.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-DynMix_20261019T210438_586648Z_p202413.json
+  best=2808.34  mean=2898.71  worst=2993.29  total_time=38999.3s

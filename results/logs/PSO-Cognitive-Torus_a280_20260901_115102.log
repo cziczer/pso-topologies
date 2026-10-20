@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Torus -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 21855.04
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Torus
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Torus_20260901T034648Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Torus_20260901T034648Z.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=21854.0s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 145012.41
+
+--- stdout ---
+Algorithm : PSO-Cognitive
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Cognitive_20260902T141819Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive_20260902T141819Z.json
+  best=3732.79  mean=3779.87  worst=3829.54  total_time=145004.7s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-FreeScale -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 35284.41
+
+--- stdout ---
+Algorithm : PSO-Explore-FreeScale
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-Explore-FreeScale_20260902T141821Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Explore-FreeScale_20260902T141821Z.json
+  best=2434.00  mean=2434.00  worst=2434.00  total_time=35281.3s

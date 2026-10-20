@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Tree -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 45937.38
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Tree
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-Cognitive-Tree_20261003T193912Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-Tree_20261003T193912Z.json
+  best=350243.00  mean=350243.00  worst=350243.00  total_time=45936.3s

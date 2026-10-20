@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Ring -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 80735.61
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Ring
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Cognitive-Ring_20260904T082936Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-Ring_20260904T082936Z.json
+  best=3833.49  mean=3835.04  worst=3835.22  total_time=80734.4s

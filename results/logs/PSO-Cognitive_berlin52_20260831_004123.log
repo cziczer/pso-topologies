@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 5083.33
+
+--- stdout ---
+Algorithm : PSO-Cognitive
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive_20260830T211643Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive_20260830T211643Z.json
+  best=7544.37  mean=7653.67  worst=8036.81  total_time=5079.6s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Tree -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 158106.41
+
+--- stdout ---
+Algorithm : PSO-Tree
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-Tree_20261004T164637Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Tree_20261004T164637Z.json
+  best=321439.00  mean=326970.20  worst=334831.00  total_time=158105.7s

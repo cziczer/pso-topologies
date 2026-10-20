@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-DynOpp -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 30759.66
+
+--- stdout ---
+Algorithm : PSO-Cognitive-DynOpp
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-Cognitive-DynOpp_20261003T193912Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Cognitive-DynOpp_20261003T193912Z.json
+  best=239631.00  mean=240588.60  worst=240828.00  total_time=30758.3s

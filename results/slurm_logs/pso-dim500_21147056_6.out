@@ -1,0 +1,5 @@
+Task 6/11: configs 123-142 of 242 in results/pending_dim500.log
+Retrying 242 failed experiments from results/pending_dim500.log
+Running 20 experiments  (experiments 123–142 of 242) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261003_203038.log

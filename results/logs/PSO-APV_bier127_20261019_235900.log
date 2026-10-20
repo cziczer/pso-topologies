@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param v_max=2.0 --param v_explore=0.5
+exit_code: 0
+elapsed_s: 3263.31
+
+--- stdout ---
+Algorithm : PSO-APV
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-APV_20261019T210440_246418Z_p661131.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-APV_20261019T210440_246418Z_p661131.json
+  best=126798.30  mean=129957.43  worst=130996.79  total_time=3260.1s

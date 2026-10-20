@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Tree -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 15179.34
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Tree
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Explore-Tree_20260902T154339Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Explore-Tree_20260902T154339Z.json
+  best=131147.24  mean=133413.03  worst=133970.65  total_time=15178.4s

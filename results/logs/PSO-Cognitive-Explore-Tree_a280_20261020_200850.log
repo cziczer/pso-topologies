@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Tree -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 75850.44
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Tree
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Explore-Tree_20261019T210443_215695Z_p185887.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Explore-Tree_20261019T210443_215695Z_p185887.json
+  best=2798.60  mean=2883.10  worst=2992.21  total_time=75847.6s

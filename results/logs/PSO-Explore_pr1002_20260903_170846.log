@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore -p tsplib-pr1002 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 89434.84
+
+--- stdout ---
+Algorithm : PSO-Explore
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 10
+Output    : results/tsplib-pr1002_PSO-Explore_20260902T141817Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-Explore_20260902T141817Z.json
+  best=312115.42  mean=312216.63  worst=312237.27  total_time=89428.7s

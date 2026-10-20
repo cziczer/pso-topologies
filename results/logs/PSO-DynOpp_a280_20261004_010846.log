@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynOpp -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 13062.22
+
+--- stdout ---
+Algorithm : PSO-DynOpp
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-DynOpp_20261003T193106Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-DynOpp_20261003T193106Z.json
+  best=3024.46  mean=3084.63  worst=3094.28  total_time=13060.2s

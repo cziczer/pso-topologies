@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Ring -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 5182.35
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Ring
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-Ring_20260902T154549Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-Ring_20260902T154549Z.json
+  best=7890.39  mean=8017.40  worst=8158.66  total_time=5181.5s

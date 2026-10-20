@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynSim -p tsplib-pr1002 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 83204.90
+
+--- stdout ---
+Algorithm : PSO-DynSim
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 5
+Output    : results/tsplib-pr1002_PSO-DynSim_20261003T193106Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-DynSim_20261003T193106Z.json
+  best=306703.03  mean=310469.70  worst=312237.27  total_time=83202.9s

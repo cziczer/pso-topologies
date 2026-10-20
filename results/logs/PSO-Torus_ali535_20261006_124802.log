@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Torus -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 72255.40
+
+--- stdout ---
+Algorithm : PSO-Torus
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-Torus_20261005T144347Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Torus_20261005T144347Z.json
+  best=220809.00  mean=225239.40  worst=230516.00  total_time=72254.7s

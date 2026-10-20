@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 205170.18
+
+--- stdout ---
+Algorithm : PSO-Cognitive
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-Cognitive_20260902T141819Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Cognitive_20260902T141819Z.json
+  best=2348.81  mean=2402.55  worst=2429.06  total_time=205162.6s

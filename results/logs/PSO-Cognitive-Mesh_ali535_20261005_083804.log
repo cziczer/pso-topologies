@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Mesh -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 50494.73
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Mesh
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-Cognitive-Mesh_20261004T163630Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Cognitive-Mesh_20261004T163630Z.json
+  best=236006.00  mean=238626.80  worst=240828.00  total_time=50494.1s

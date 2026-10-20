@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore -p tsplib-pr1002 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 92490.99
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 10
+Output    : results/tsplib-pr1002_PSO-Cognitive-Explore_20260902T141814Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-Cognitive-Explore_20260902T141814Z.json
+  best=311868.80  mean=312183.89  worst=312237.27  total_time=92488.3s

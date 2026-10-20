@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 951–975 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161812.log
+[   1/25  #952/1548] OK   2048.6s  ETA 13:39:26  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 10
+[   2/25  #957/1548] OK   2115.2s  ETA 6:45:24  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 25
+[   3/25  #954/1548] OK   2268.5s  ETA 4:37:15  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 10
+[   4/25  #955/1548] OK   3112.1s  ETA 4:32:18  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 10
+[   5/25  #953/1548] OK   3462.8s  ETA 3:50:51  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 10
+[   6/25  #962/1548] OK   2369.0s  ETA 4:49:16  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 50
+[   7/25  #959/1548] OK   3894.2s  ETA 4:14:41  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 25
+[   8/25  #960/1548] OK   4484.2s  ETA 3:53:43  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 25
+[   9/25  #964/1548] OK   3399.6s  ETA 4:23:07  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 50
+[  10/25  #965/1548] OK   7511.0s  ETA 5:36:20  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 50
+[  11/25  #967/1548] OK   4651.7s  ETA 4:47:03  [G] PSO-Cognitive-Explore-Ring @ bier127 --neighbours-radius 1
+[  12/25  #958/1548] OK   15410.1s  ETA 4:38:14  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 25
+[  13/25  #968/1548] OK   4618.1s  ETA 4:38:01  [G] PSO-Cognitive-Explore-Tree @ bier127 --neighbours-radius 1
+[  14/25  #969/1548] OK   4544.7s  ETA 3:56:43  [G] PSO-Cognitive-Explore-Mesh @ bier127 --neighbours-radius 1
+[  15/25  #970/1548] OK   4856.3s  ETA 3:45:10  [G] PSO-Cognitive-Explore-Torus @ bier127 --neighbours-radius 1
+[  16/25  #963/1548] OK   17198.2s  ETA 3:13:41  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 50
+[  17/25  #972/1548] OK   4621.2s  ETA 2:58:01  [G] PSO-Cognitive-Explore-Ring @ bier127 --neighbours-radius 2
+[  18/25  #971/1548] OK   6853.6s  ETA 2:41:33  [G] PSO-Cognitive-Explore-FreeScale @ bier127 --neighbours-radius 1
+[  19/25  #973/1548] OK   4687.6s  ETA 2:11:20  [G] PSO-Cognitive-Explore-Tree @ bier127 --neighbours-radius 2
+[  20/25  #974/1548] OK   4559.1s  ETA 1:45:05  [G] PSO-Cognitive-Explore-Mesh @ bier127 --neighbours-radius 2
+[  21/25  #975/1548] OK   4876.6s  ETA 1:27:32  [G] PSO-Cognitive-Explore-Torus @ bier127 --neighbours-radius 2
+[  22/25  #951/1548] OK   56804.0s  ETA 2:09:06  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 5
+[  23/25  #956/1548] OK   63839.3s  ETA 1:32:31  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 10
+[  24/25  #961/1548] OK   62795.7s  ETA 0:45:11  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 25
+[  25/25  #966/1548] OK   85211.3s  ETA 0:00:00  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 50
+
+Finished in 1 day, 1:30:10  —  25 OK, 0 FAILED.

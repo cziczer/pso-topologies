@@ -1,0 +1,8 @@
+[bier127] task 7/45: configs 8-8 of 46
+Retrying 46 failed experiments from results/pending_topo_bier127.log
+Running 1 experiments  (experiments 8–8 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230439.log
+[   1/1  #8/46] OK   19283.0s  ETA 0:00:00  [STAT] PSO-Cognitive-Explore-Tree @ bier127 n=10 --neighbours-radius 5 --param stagnation_trigger=50
+
+Finished in 5:21:22  —  1 OK, 0 FAILED.

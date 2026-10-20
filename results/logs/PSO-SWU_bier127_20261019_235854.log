@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param v_max=2.0 --param v_explore=0.5
+exit_code: 0
+elapsed_s: 3258.16
+
+--- stdout ---
+Algorithm : PSO-SWU
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-SWU_20261019T210439_075696Z_p661119.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-SWU_20261019T210439_075696Z_p661119.json
+  best=125285.94  mean=127415.85  worst=130759.12  total_time=3255.6s

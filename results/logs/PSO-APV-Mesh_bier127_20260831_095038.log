@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV-Mesh -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 1563.83
+
+--- stdout ---
+Algorithm : PSO-APV-Mesh
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-APV-Mesh_20260831T072435Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-APV-Mesh_20260831T072435Z.json
+  best=133970.65  mean=133970.65  worst=133970.65  total_time=1562.8s

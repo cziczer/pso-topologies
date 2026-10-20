@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Mesh -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 33316.80
+
+--- stdout ---
+Algorithm : PSO-Explore-Mesh
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-Explore-Mesh_20260903T084050Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Explore-Mesh_20260903T084050Z.json
+  best=2434.00  mean=2434.00  worst=2434.00  total_time=33315.8s

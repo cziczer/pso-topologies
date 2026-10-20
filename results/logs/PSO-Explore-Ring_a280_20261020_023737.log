@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Ring -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 12771.70
+
+--- stdout ---
+Algorithm : PSO-Explore-Ring
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-Ring_20261019T210446_994273Z_p116162.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-Ring_20261019T210446_994273Z_p116162.json
+  best=3054.40  mean=3086.31  worst=3094.28  total_time=12770.2s

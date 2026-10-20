@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 16058.18
+
+--- stdout ---
+Algorithm : PSO-Explore
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore_20260830T230501Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore_20260830T230501Z.json
+  best=3071.01  mean=3084.98  worst=3092.66  total_time=16056.8s

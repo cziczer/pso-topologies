@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Ring -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 26719.75
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Ring
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Ring_20260830T211643Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Ring_20260830T211643Z.json
+  best=3032.82  mean=3082.87  worst=3094.28  total_time=26715.7s

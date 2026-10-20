@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynSim -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 60037.30
+
+--- stdout ---
+Algorithm : PSO-DynSim
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-DynSim_20261004T065410Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-DynSim_20261004T065410Z.json
+  best=220339.00  mean=226666.40  worst=232637.00  total_time=60036.5s

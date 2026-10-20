@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Ring -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 2585.37
+
+--- stdout ---
+Algorithm : PSO-SWU-Ring
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-SWU-Ring_20260902T180642Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-SWU-Ring_20260902T180642Z.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=2584.3s

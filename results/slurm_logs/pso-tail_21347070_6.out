@@ -1,0 +1,5 @@
+Task 6/6: config 7 of 7 in results/pending_tail.log
+Retrying 7 failed experiments from results/pending_tail.log
+Running 1 experiments  (experiments 7–7 of 7) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_191213.log

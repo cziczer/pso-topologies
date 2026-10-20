@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Mesh -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 105490.70
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Mesh
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Cognitive-Mesh_20260830T211643Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-Mesh_20260830T211643Z.json
+  best=3760.31  mean=3822.75  worst=3835.22  total_time=105486.7s

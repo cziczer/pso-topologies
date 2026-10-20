@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Mesh -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 45236.60
+
+--- stdout ---
+Algorithm : PSO-Explore-Mesh
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-Mesh_20261019T210446_606109Z_p116143.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-Mesh_20261019T210446_606109Z_p116143.json
+  best=2746.14  mean=2825.22  worst=2866.55  total_time=45233.5s

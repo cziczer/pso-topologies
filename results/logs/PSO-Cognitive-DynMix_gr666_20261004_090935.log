@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-DynMix -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 41424.39
+
+--- stdout ---
+Algorithm : PSO-Cognitive-DynMix
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-Cognitive-DynMix_20261003T193912Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-DynMix_20261003T193912Z.json
+  best=350243.00  mean=350243.00  worst=350243.00  total_time=41423.1s

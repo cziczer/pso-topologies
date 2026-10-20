@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 926–950 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161812.log
+[   1/25  #929/1548] OK   90719.9s  ETA 25 days, 4:47:57  [F] PSO-Explore-Mesh @ pr1002 --neighbours-radius 25
+[   2/25  #932/1548] OK   91608.6s  ETA 12 days, 4:38:19  [F] PSO-Explore-Ring @ pr1002 --neighbours-radius 50
+[   3/25  #927/1548] OK   91957.7s  ETA 7 days, 19:19:16  [F] PSO-Explore-Ring @ pr1002 --neighbours-radius 25
+[   4/25  #930/1548] OK   93793.7s  ETA 5 days, 16:46:56  [F] PSO-Explore-Torus @ pr1002 --neighbours-radius 25
+[   5/25  #937/1548] OK   2014.5s  ETA 4 days, 10:27:12  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 1
+[   6/25  #938/1548] OK   2070.9s  ETA 3 days, 14:05:50  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 1
+[   7/25  #939/1548] OK   2027.2s  ETA 2 days, 23:21:41  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 1
+[   8/25  #928/1548] OK   100684.6s  ETA 2 days, 11:25:54  [F] PSO-Explore-Tree @ pr1002 --neighbours-radius 25
+[   9/25  #933/1548] OK   100774.2s  ETA 2 days, 1:45:54  [F] PSO-Explore-Tree @ pr1002 --neighbours-radius 50
+[  10/25  #940/1548] OK   2170.7s  ETA 1 day, 18:31:55  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 1
+[  11/25  #942/1548] OK   2025.9s  ETA 1 day, 12:20:36  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 2
+[  12/25  #943/1548] OK   2105.4s  ETA 1 day, 7:21:04  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 2
+[  13/25  #944/1548] OK   2012.0s  ETA 1 day, 2:52:29  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 2
+[  14/25  #941/1548] OK   4234.6s  ETA 22:53:56  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 1
+[  15/25  #945/1548] OK   2266.7s  ETA 19:42:46  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 2
+[  16/25  #947/1548] OK   2036.4s  ETA 16:42:42  [G] PSO-Cognitive-Explore-Ring @ berlin52 --neighbours-radius 5
+[  17/25  #948/1548] OK   2328.5s  ETA 14:13:09  [G] PSO-Cognitive-Explore-Tree @ berlin52 --neighbours-radius 5
+[  18/25  #949/1548] OK   2128.1s  ETA 11:47:01  [G] PSO-Cognitive-Explore-Mesh @ berlin52 --neighbours-radius 5
+[  19/25  #950/1548] OK   2527.9s  ETA 9:45:49  [G] PSO-Cognitive-Explore-Torus @ berlin52 --neighbours-radius 5
+[  20/25  #946/1548] OK   26278.5s  ETA 9:06:12  [G] PSO-Cognitive-Explore-FreeScale @ berlin52 --neighbours-radius 2
+[  21/25  #926/1548] OK   140963.3s  ETA 7:27:30  [F] PSO-Explore-FreeScale @ pr1002 --neighbours-radius 10
+[  22/25  #931/1548] OK   140997.1s  ETA 5:20:26  [F] PSO-Explore-FreeScale @ pr1002 --neighbours-radius 25
+[  23/25  #934/1548] OK   90846.9s  ETA 4:23:08  [F] PSO-Explore-Mesh @ pr1002 --neighbours-radius 50
+[  24/25  #935/1548] OK   96564.8s  ETA 2:10:40  [F] PSO-Explore-Torus @ pr1002 --neighbours-radius 50
+[  25/25  #936/1548] OK   140370.3s  ETA 0:00:00  [F] PSO-Explore-FreeScale @ pr1002 --neighbours-radius 50
+
+Finished in 2 days, 16:32:08  —  25 OK, 0 FAILED.

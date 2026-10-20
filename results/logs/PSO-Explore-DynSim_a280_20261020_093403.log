@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-DynSim -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 37763.98
+
+--- stdout ---
+Algorithm : PSO-Explore-DynSim
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-DynSim_20261019T210442_279908Z_p202455.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-DynSim_20261019T210442_279908Z_p202455.json
+  best=2805.90  mean=2886.34  worst=2979.91  total_time=37761.1s

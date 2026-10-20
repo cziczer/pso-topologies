@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-DynMix -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 10947.32
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-DynMix
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Explore-DynMix_20261019T210446_251405Z_p116122.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Explore-DynMix_20261019T210446_251405Z_p116122.json
+  best=122389.24  mean=123859.04  worst=124933.05  total_time=10945.8s

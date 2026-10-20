@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 576–600 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161818.log
+[   1/25  #577/1548] OK    178.8s  ETA 1:11:32  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 1
+[   2/25  #582/1548] OK    203.4s  ETA 0:38:59  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 2
+[   3/25  #578/1548] OK    207.5s  ETA 0:25:21  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 1
+[   4/25  #579/1548] OK    244.6s  ETA 0:21:24  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 1
+[   5/25  #583/1548] OK    280.8s  ETA 0:18:43  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 2
+[   6/25  #580/1548] OK    333.7s  ETA 0:17:36  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 1
+[   7/25  #584/1548] OK    222.1s  ETA 0:17:10  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 2
+[   8/25  #587/1548] OK    233.0s  ETA 0:16:54  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 5
+[   9/25  #589/1548] OK    262.8s  ETA 0:17:40  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 5
+[  10/25  #585/1548] OK    430.4s  ETA 0:15:50  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 2
+[  11/25  #588/1548] OK    425.8s  ETA 0:14:59  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 5
+[  12/25  #592/1548] OK    234.6s  ETA 0:15:00  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 10
+[  13/25  #590/1548] OK    619.4s  ETA 0:15:41  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 5
+[  14/25  #594/1548] OK    438.9s  ETA 0:15:00  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 10
+[  15/25  #597/1548] OK    269.2s  ETA 0:15:43  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 25
+[  16/25  #595/1548] OK   1217.7s  ETA 0:19:12  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 10
+[  17/25  #593/1548] OK   1473.5s  ETA 0:16:31  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 10
+[  18/25  #581/1548] OK   2449.7s  ETA 0:15:52  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 1
+[  19/25  #599/1548] OK    845.8s  ETA 0:15:14  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 25
+[  20/25  #600/1548] OK   2747.8s  ETA 0:20:13  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 25
+[  21/25  #598/1548] OK   11841.9s  ETA 0:42:05  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 25
+[  22/25  #586/1548] OK   24202.7s  ETA 0:55:28  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 2
+[  23/25  #591/1548] OK   50390.1s  ETA 1:13:43  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 5
+[  24/25  #596/1548] OK   50778.7s  ETA 0:35:58  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 10
+[  25/25  #576/1548] OK   108737.8s  ETA 0:00:00  [D] PSO-APV-FreeScale @ pr1002 --neighbours-radius 50
+
+Finished in 1 day, 6:12:17  —  25 OK, 0 FAILED.

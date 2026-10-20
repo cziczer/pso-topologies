@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 651–675 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161812.log
+[   1/25  #652/1548] OK   2853.0s  ETA 19:01:12  [E] PSO-SWU-Ring @ a280 --neighbours-radius 10
+[   2/25  #654/1548] OK   2947.9s  ETA 9:25:00  [E] PSO-SWU-Mesh @ a280 --neighbours-radius 10
+[   3/25  #657/1548] OK   3302.2s  ETA 6:43:36  [E] PSO-SWU-Ring @ a280 --neighbours-radius 25
+[   4/25  #653/1548] OK   4383.7s  ETA 6:23:34  [E] PSO-SWU-Tree @ a280 --neighbours-radius 10
+[   5/25  #655/1548] OK   4496.9s  ETA 4:59:47  [E] PSO-SWU-Torus @ a280 --neighbours-radius 10
+[   6/25  #659/1548] OK   3381.0s  ETA 5:29:01  [E] PSO-SWU-Mesh @ a280 --neighbours-radius 25
+[   7/25  #662/1548] OK   3359.3s  ETA 5:31:50  [E] PSO-SWU-Ring @ a280 --neighbours-radius 50
+[   8/25  #660/1548] OK   5772.2s  ETA 5:08:50  [E] PSO-SWU-Torus @ a280 --neighbours-radius 25
+[   9/25  #664/1548] OK   3169.3s  ETA 4:38:36  [E] PSO-SWU-Mesh @ a280 --neighbours-radius 50
+[  10/25  #658/1548] OK   13322.1s  ETA 5:33:03  [E] PSO-SWU-Tree @ a280 --neighbours-radius 25
+[  11/25  #667/1548] OK   6842.6s  ETA 5:44:36  [E] PSO-SWU-Ring @ ali535 --neighbours-radius 1
+[  12/25  #663/1548] OK   12527.0s  ETA 5:07:22  [E] PSO-SWU-Tree @ a280 --neighbours-radius 50
+[  13/25  #665/1548] OK   9297.1s  ETA 4:22:09  [E] PSO-SWU-Torus @ a280 --neighbours-radius 50
+[  14/25  #668/1548] OK   7479.3s  ETA 4:32:23  [E] PSO-SWU-Tree @ ali535 --neighbours-radius 1
+[  15/25  #669/1548] OK   8732.2s  ETA 4:37:32  [E] PSO-SWU-Mesh @ ali535 --neighbours-radius 1
+[  16/25  #670/1548] OK   8522.8s  ETA 3:59:30  [E] PSO-SWU-Torus @ ali535 --neighbours-radius 1
+[  17/25  #672/1548] OK   7726.3s  ETA 3:43:44  [E] PSO-SWU-Ring @ ali535 --neighbours-radius 2
+[  18/25  #671/1548] OK   13052.0s  ETA 3:15:02  [E] PSO-SWU-FreeScale @ ali535 --neighbours-radius 1
+[  19/25  #673/1548] OK   7575.0s  ETA 2:51:19  [E] PSO-SWU-Tree @ ali535 --neighbours-radius 2
+[  20/25  #674/1548] OK   8851.2s  ETA 2:23:19  [E] PSO-SWU-Mesh @ ali535 --neighbours-radius 2
+[  21/25  #675/1548] OK   8652.4s  ETA 1:58:01  [E] PSO-SWU-Torus @ ali535 --neighbours-radius 2
+[  22/25  #651/1548] OK   50471.1s  ETA 1:54:42  [E] PSO-SWU-FreeScale @ a280 --neighbours-radius 5
+[  23/25  #656/1548] OK   53746.4s  ETA 1:17:53  [E] PSO-SWU-FreeScale @ a280 --neighbours-radius 10
+[  24/25  #661/1548] OK   54638.0s  ETA 0:40:14  [E] PSO-SWU-FreeScale @ a280 --neighbours-radius 25
+[  25/25  #666/1548] OK   52626.2s  ETA 0:00:00  [E] PSO-SWU-FreeScale @ a280 --neighbours-radius 50
+
+Finished in 17:02:26  —  25 OK, 0 FAILED.

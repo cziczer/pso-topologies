@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-DynOpp -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 12505.25
+
+--- stdout ---
+Algorithm : PSO-Cognitive-DynOpp
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-DynOpp_20261004T175640Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-DynOpp_20261004T175640Z.json
+  best=7544.66  mean=7604.99  worst=7717.68  total_time=12504.3s

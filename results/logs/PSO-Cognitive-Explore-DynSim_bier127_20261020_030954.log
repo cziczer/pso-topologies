@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-DynSim -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 14711.69
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-DynSim
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Explore-DynSim_20261019T210444_224514Z_p116013.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Explore-DynSim_20261019T210444_224514Z_p116013.json
+  best=120211.04  mean=123461.64  worst=125243.02  total_time=14710.4s

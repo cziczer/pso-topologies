@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param v_max=2.0 --param v_explore=0.0
+exit_code: 0
+elapsed_s: 3682.26
+
+--- stdout ---
+Algorithm : PSO-APV
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-APV_20261019T210444_801202Z_p661161.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-APV_20261019T210444_801202Z_p661161.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=3674.6s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Mesh -p tsplib-pr1002 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 31289.87
+
+--- stdout ---
+Algorithm : PSO-SWU-Mesh
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 10
+Output    : results/tsplib-pr1002_PSO-SWU-Mesh_20260902T141817Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-SWU-Mesh_20260902T141817Z.json
+  best=312237.27  mean=312237.27  worst=312237.27  total_time=31283.9s

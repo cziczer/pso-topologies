@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 526–550 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161811.log
+[   1/25  #527/1548] OK   23675.5s  ETA 6 days, 13:50:12  [D] PSO-APV-Ring @ gr666 --neighbours-radius 5
+[   2/25  #532/1548] OK   24737.5s  ETA 3 days, 7:01:20  [D] PSO-APV-Ring @ gr666 --neighbours-radius 10
+[   3/25  #530/1548] OK   28919.3s  ETA 2 days, 10:54:34  [D] PSO-APV-Torus @ gr666 --neighbours-radius 5
+[   4/25  #529/1548] OK   29378.8s  ETA 1 day, 18:50:38  [D] PSO-APV-Mesh @ gr666 --neighbours-radius 5
+[   5/25  #528/1548] OK   29776.2s  ETA 1 day, 9:05:04  [D] PSO-APV-Tree @ gr666 --neighbours-radius 5
+[   6/25  #533/1548] OK   32022.2s  ETA 1 day, 4:10:03  [D] PSO-APV-Tree @ gr666 --neighbours-radius 10
+[   7/25  #534/1548] OK   25742.6s  ETA 1 day, 11:17:55  [D] PSO-APV-Mesh @ gr666 --neighbours-radius 10
+[   8/25  #526/1548] OK   52250.4s  ETA 1 day, 6:50:32  [D] PSO-APV-FreeScale @ gr666 --neighbours-radius 2
+[   9/25  #535/1548] OK   28625.7s  ETA 1 day, 2:21:07  [D] PSO-APV-Torus @ gr666 --neighbours-radius 10
+[  10/25  #537/1548] OK   25551.5s  ETA 22:53:15  [D] PSO-APV-Ring @ gr666 --neighbours-radius 25
+[  11/25  #539/1548] OK   24972.1s  ETA 20:08:58  [D] PSO-APV-Mesh @ gr666 --neighbours-radius 25
+[  12/25  #538/1548] OK   34456.6s  ETA 19:19:45  [D] PSO-APV-Tree @ gr666 --neighbours-radius 25
+[  13/25  #531/1548] OK   73593.2s  ETA 18:52:12  [D] PSO-APV-FreeScale @ gr666 --neighbours-radius 5
+[  14/25  #540/1548] OK   29758.4s  ETA 17:16:50  [D] PSO-APV-Torus @ gr666 --neighbours-radius 25
+[  15/25  #542/1548] OK   26413.7s  ETA 14:46:24  [D] PSO-APV-Ring @ gr666 --neighbours-radius 50
+[  16/25  #544/1548] OK   24644.6s  ETA 12:45:21  [D] PSO-APV-Mesh @ gr666 --neighbours-radius 50
+[  17/25  #543/1548] OK   34373.7s  ETA 11:40:25  [D] PSO-APV-Tree @ gr666 --neighbours-radius 50
+[  18/25  #545/1548] OK   32039.4s  ETA 10:23:59  [D] PSO-APV-Torus @ gr666 --neighbours-radius 50
+[  19/25  #536/1548] OK   75372.1s  ETA 9:08:54  [D] PSO-APV-FreeScale @ gr666 --neighbours-radius 10
+[  20/25  #547/1548] OK   34062.6s  ETA 7:51:49  [D] PSO-APV-Ring @ pr1002 --neighbours-radius 1
+[  21/25  #541/1548] OK   75045.7s  ETA 6:44:06  [D] PSO-APV-FreeScale @ gr666 --neighbours-radius 25
+[  22/25  #548/1548] OK   49287.1s  ETA 4:53:19  [D] PSO-APV-Tree @ pr1002 --neighbours-radius 1
+[  23/25  #549/1548] OK   52977.0s  ETA 3:15:05  [D] PSO-APV-Mesh @ pr1002 --neighbours-radius 1
+[  24/25  #550/1548] OK   50013.2s  ETA 1:36:44  [D] PSO-APV-Torus @ pr1002 --neighbours-radius 1
+[  25/25  #546/1548] OK   73718.2s  ETA 0:00:00  [D] PSO-APV-FreeScale @ gr666 --neighbours-radius 50
+
+Finished in 1 day, 16:55:11  —  25 OK, 0 FAILED.

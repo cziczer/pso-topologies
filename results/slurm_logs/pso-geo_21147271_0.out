@@ -1,0 +1,5 @@
+Task 0/2: configs 1-27 of 80 in results/pending_geo.log
+Retrying 80 failed experiments from results/pending_geo.log
+Running 27 experiments  (experiments 1–27 of 80) with 8 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261003_213911.log

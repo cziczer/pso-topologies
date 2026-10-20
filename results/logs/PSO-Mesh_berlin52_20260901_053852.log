@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Mesh -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 2290.86
+
+--- stdout ---
+Algorithm : PSO-Mesh
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Mesh_20260901T030042Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Mesh_20260901T030042Z.json
+  best=8028.72  mean=8143.23  worst=8182.19  total_time=2289.8s

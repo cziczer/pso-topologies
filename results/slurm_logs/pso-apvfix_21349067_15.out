@@ -1,0 +1,8 @@
+Task 15/17: configs 16-16 of 18 in results/pending_apvfix.log
+Retrying 18 failed experiments from results/pending_apvfix.log
+Running 1 experiments  (experiments 16–16 of 18) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_222214.log
+[   1/1  #16/18] OK    240.9s  ETA 0:00:00  [APVX] PSO-SWU @ berlin52 n=10 --param v_max=2.0 --param v_explore=0.0
+
+Finished in 0:04:00  —  1 OK, 0 FAILED.

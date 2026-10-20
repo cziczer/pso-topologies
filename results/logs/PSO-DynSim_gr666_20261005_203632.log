@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynSim -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 169040.63
+
+--- stdout ---
+Algorithm : PSO-DynSim
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-DynSim_20261003T193912Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-DynSim_20261003T193912Z.json
+  best=321646.00  mean=328980.80  worst=336809.00  total_time=169039.3s

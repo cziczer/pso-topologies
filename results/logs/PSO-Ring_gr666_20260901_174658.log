@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Ring -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 46276.17
+
+--- stdout ---
+Algorithm : PSO-Ring
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Ring_20260901T025542Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Ring_20260901T025542Z.json
+  best=3835.22  mean=3835.22  worst=3835.22  total_time=46275.2s

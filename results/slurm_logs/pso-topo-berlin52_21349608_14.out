@@ -1,0 +1,8 @@
+[berlin52] task 14/45: configs 15-15 of 46
+Retrying 46 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 15–15 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230438.log
+[   1/1  #15/46] OK   4837.3s  ETA 0:00:00  [STAT] PSO-Explore-Torus @ berlin52 n=10 --neighbours-radius 25 --param stagnation_trigger=50
+
+Finished in 1:20:37  —  1 OK, 0 FAILED.

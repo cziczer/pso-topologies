@@ -1,0 +1,8 @@
+Task 4/13: configs 5-5 of 14 in results/pending_apvfix.log
+Retrying 14 failed experiments from results/pending_apvfix.log
+Running 1 experiments  (experiments 5–5 of 14) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230437.log
+[   1/1  #5/14] OK   4551.7s  ETA 0:00:00  [APVX] PSO-SWU @ a280 n=10 --param v_max=2.0 --param v_explore=0.5
+
+Finished in 1:15:51  —  1 OK, 0 FAILED.

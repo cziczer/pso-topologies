@@ -1,0 +1,26 @@
+Task 0/3: configs 1-19 of 76 in results/pending_designC.log
+Retrying 76 failed experiments from results/pending_designC.log
+Running 19 experiments  (experiments 1–19 of 76) with 8 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261003_213104.log
+[   1/19  #7/76] OK   13062.2s  ETA 2 days, 17:18:40  [DYN] PSO-DynOpp @ a280 n=10 --param neighbor_pct=0.05
+[   2/19  #8/76] OK   22061.8s  ETA 2 days, 4:05:25  [DYN] PSO-Cognitive-DynSim @ a280 n=10 --param neighbor_pct=0.05
+[   3/19  #9/76] OK   22454.1s  ETA 2 days, 4:37:00  [DYN] PSO-Cognitive-DynMix @ a280 n=10 --param neighbor_pct=0.05
+[   4/19  #3/76] OK   44643.9s  ETA 1 day, 22:30:14  [DYN] PSO-DynMix @ pr1002 n=5 --param neighbor_pct=0.05
+[   5/19  #10/76] OK   45613.8s  ETA 2 days, 4:38:11  [BASE] PSO @ pr1002 n=5
+[   6/19  #4/76] OK   79705.5s  ETA 1 day, 23:58:15  [STAT] PSO-Cognitive-Tree @ pr1002 n=5 --neighbours-radius 5
+[   7/19  #5/76] OK   80539.0s  ETA 1 day, 14:21:06  [STAT] PSO-Cognitive-Mesh @ pr1002 n=5 --neighbours-radius 25
+[   8/19  #11/76] OK   45218.6s  ETA 1 day, 6:50:10  [STAT] PSO-Mesh @ pr1002 n=5 --neighbours-radius 1
+[   9/19  #6/76] OK   80939.7s  ETA 1 day, 0:58:52  [STAT] PSO-Cognitive-FreeScale @ pr1002 n=5 --neighbours-radius 1
+[  10/19  #1/76] OK   81142.2s  ETA 20:17:07  [DYN] PSO-Cognitive-DynSim @ pr1002 n=5 --param neighbor_pct=0.05
+[  11/19  #2/76] OK   81149.3s  ETA 16:23:37  [DYN] PSO-Cognitive-DynMix @ pr1002 n=5 --param neighbor_pct=0.05
+[  12/19  #19/76] OK   2560.2s  ETA 13:33:50  [DYN] PSO-DynMix @ berlin52 n=10 --param neighbor_pct=0.05
+[  13/19  #17/76] OK   3067.7s  ETA 10:46:12  [DYN] PSO-DynSim @ berlin52 n=10 --param neighbor_pct=0.05
+[  14/19  #18/76] OK   3549.8s  ETA 8:24:07  [DYN] PSO-DynSim @ berlin52 n=10 --param neighbor_pct=0.25
+[  15/19  #15/76] OK   7582.7s  ETA 6:31:39  [DYN] PSO-DynMix @ bier127 n=10 --param neighbor_pct=0.05
+[  16/19  #14/76] OK   9225.1s  ETA 4:37:54  [DYN] PSO-Cognitive-DynMix @ bier127 n=10 --param neighbor_pct=0.25
+[  17/19  #16/76] OK   12505.3s  ETA 3:02:49  [DYN] PSO-Cognitive-DynOpp @ berlin52 n=10 --param neighbor_pct=0.05
+[  18/19  #12/76] OK   82647.8s  ETA 1:57:51  [STAT] PSO-Torus @ pr1002 n=5 --neighbours-radius 5
+[  19/19  #13/76] OK   87920.3s  ETA 0:00:00  [STAT] PSO-FreeScale @ pr1002 n=5 --neighbours-radius 25
+
+Finished in 1 day, 19:13:15  —  19 OK, 0 FAILED.

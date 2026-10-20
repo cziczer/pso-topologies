@@ -1,0 +1,8 @@
+[bier127] task 29/45: configs 30-30 of 46
+Retrying 46 failed experiments from results/pending_topo_bier127.log
+Running 1 experiments  (experiments 30–30 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230436.log
+[   1/1  #30/46] OK   13292.6s  ETA 0:00:00  [STAT] PSO-Explore-Tree @ bier127 n=10 --neighbours-radius 5 --param stagnation_trigger=50
+
+Finished in 3:41:32  —  1 OK, 0 FAILED.

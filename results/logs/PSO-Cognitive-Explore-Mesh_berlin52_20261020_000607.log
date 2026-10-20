@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-Mesh -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 3690.79
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-Mesh
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-Explore-Mesh_20261019T210443_573811Z_p1252606.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-Explore-Mesh_20261019T210443_573811Z_p1252606.json
+  best=7544.37  mean=7579.49  worst=7895.58  total_time=3683.3s

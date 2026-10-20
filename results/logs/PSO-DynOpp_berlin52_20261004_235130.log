@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynOpp -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 2998.96
+
+--- stdout ---
+Algorithm : PSO-DynOpp
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-DynOpp_20261004T210132Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-DynOpp_20261004T210132Z.json
+  best=7544.37  mean=7569.63  worst=7721.30  total_time=2997.9s

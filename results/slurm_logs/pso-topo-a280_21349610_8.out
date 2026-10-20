@@ -1,0 +1,8 @@
+[a280] task 8/47: configs 9-9 of 48
+Retrying 48 failed experiments from results/pending_topo_a280.log
+Running 1 experiments  (experiments 9–9 of 48) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230446.log
+[   1/1  #9/48] OK   12703.9s  ETA 0:00:00  [STAT] PSO-Explore-Tree @ a280 n=10 --neighbours-radius 1 --param stagnation_trigger=50
+
+Finished in 3:31:43  —  1 OK, 0 FAILED.

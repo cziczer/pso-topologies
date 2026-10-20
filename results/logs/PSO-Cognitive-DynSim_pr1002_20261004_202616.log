@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-DynSim -p tsplib-pr1002 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 82506.82
+
+--- stdout ---
+Algorithm : PSO-Cognitive-DynSim
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 5
+Output    : results/tsplib-pr1002_PSO-Cognitive-DynSim_20261003T193110Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-Cognitive-DynSim_20261003T193110Z.json
+  best=312237.27  mean=312237.27  worst=312237.27  total_time=82505.4s

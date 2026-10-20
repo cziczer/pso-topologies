@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynSim -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 11079.20
+
+--- stdout ---
+Algorithm : PSO-DynSim
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-DynSim_20261004T182322Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-DynSim_20261004T182322Z.json
+  best=124493.43  mean=126478.51  worst=129235.13  total_time=11078.1s

@@ -1,0 +1,5 @@
+[berlin52] task 14/43: configs 15-15 of 44
+Retrying 44 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 15–15 of 44) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_225815.log

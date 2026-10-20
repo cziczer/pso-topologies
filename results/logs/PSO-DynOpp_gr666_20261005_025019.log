@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynOpp -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 105068.49
+
+--- stdout ---
+Algorithm : PSO-DynOpp
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-DynOpp_20261003T193912Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-DynOpp_20261003T193912Z.json
+  best=328853.00  mean=336482.20  worst=343140.00  total_time=105067.4s

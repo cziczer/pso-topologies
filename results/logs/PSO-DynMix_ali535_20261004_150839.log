@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynMix -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 17031.15
+
+--- stdout ---
+Algorithm : PSO-DynMix
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-DynMix_20261004T082449Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-DynMix_20261004T082449Z.json
+  best=240828.00  mean=240828.00  worst=240828.00  total_time=17030.5s

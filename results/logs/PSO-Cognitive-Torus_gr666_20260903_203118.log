@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Torus -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 101586.56
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Torus
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Cognitive-Torus_20260902T141817Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-Torus_20260902T141817Z.json
+  best=3710.67  mean=3817.66  worst=3835.22  total_time=101581.3s

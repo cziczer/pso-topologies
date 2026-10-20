@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Explore-DynSim -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 54538.81
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Explore-DynSim
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-Explore-DynSim_20261019T210440_947272Z_p168234.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-Explore-DynSim_20261019T210440_947272Z_p168234.json
+  best=2733.48  mean=2805.77  worst=2869.38  total_time=54536.5s

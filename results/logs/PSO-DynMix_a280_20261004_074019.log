@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynMix -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 16606.14
+
+--- stdout ---
+Algorithm : PSO-DynMix
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-DynMix_20261004T010334Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-DynMix_20261004T010334Z.json
+  best=2808.46  mean=3039.27  worst=3094.28  total_time=16605.0s

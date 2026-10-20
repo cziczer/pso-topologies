@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param v_max=2.0 --param v_explore=0.0
+exit_code: 0
+elapsed_s: 3699.64
+
+--- stdout ---
+Algorithm : PSO-SWU
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-SWU_20261019T210440_192339Z_p661129.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-SWU_20261019T210440_192339Z_p661129.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=3696.9s

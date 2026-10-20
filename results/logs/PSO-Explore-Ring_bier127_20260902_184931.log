@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Ring -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 4567.53
+
+--- stdout ---
+Algorithm : PSO-Explore-Ring
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Explore-Ring_20260902T153324Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Explore-Ring_20260902T153324Z.json
+  best=132448.96  mean=133818.48  worst=133970.65  total_time=4566.5s

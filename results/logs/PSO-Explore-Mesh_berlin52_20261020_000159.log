@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Mesh -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 3438.24
+
+--- stdout ---
+Algorithm : PSO-Explore-Mesh
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Explore-Mesh_20261019T210441_869776Z_p392734.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Explore-Mesh_20261019T210441_869776Z_p392734.json
+  best=7544.37  mean=7591.61  worst=8016.78  total_time=3437.0s

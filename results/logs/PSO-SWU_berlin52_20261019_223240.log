@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param v_max=2.0 --param v_explore=1.0
+exit_code: 0
+elapsed_s: 625.98
+
+--- stdout ---
+Algorithm : PSO-SWU
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-SWU_20261019T202216Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-SWU_20261019T202216Z.json
+  best=8041.72  mean=8106.04  worst=8134.90  total_time=623.9s

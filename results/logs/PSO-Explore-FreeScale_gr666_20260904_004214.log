@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-FreeScale -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 2
+exit_code: 0
+elapsed_s: 70289.61
+
+--- stdout ---
+Algorithm : PSO-Explore-FreeScale
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Explore-FreeScale_20260903T031045Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Explore-FreeScale_20260903T031045Z.json
+  best=3835.22  mean=3835.22  worst=3835.22  total_time=70288.7s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-FreeScale -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 150456.44
+
+--- stdout ---
+Algorithm : PSO-Cognitive-FreeScale
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Cognitive-FreeScale_20260830T211643Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Cognitive-FreeScale_20260830T211643Z.json
+  best=2948.75  mean=3034.28  worst=3094.28  total_time=150452.3s

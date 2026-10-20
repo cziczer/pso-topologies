@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore -p tsplib-gr666 --repetitions 5 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 26729.12
+
+--- stdout ---
+Algorithm : PSO-Explore
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 5
+Output    : results/tsplib-gr666_PSO-Explore_20261005T063805Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Explore_20261005T063805Z.json
+  best=346354.00  mean=347862.20  worst=349575.00  total_time=26728.5s

@@ -1,0 +1,34 @@
+Task 2/2: configs 54-80 of 80 in results/pending_geo.log
+Retrying 80 failed experiments from results/pending_geo.log
+Running 27 experiments  (experiments 54–80 of 80) with 8 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261003_213911.log
+[   1/27  #58/80] OK   23166.2s  ETA 6 days, 23:18:41  [DYN] PSO-DynOpp @ gr666 n=5 --param neighbor_pct=0.05
+[   2/27  #56/80] OK   30759.7s  ETA 4 days, 10:48:15  [DYN] PSO-Cognitive-DynOpp @ ali535 n=5 --param neighbor_pct=0.05
+[   3/27  #61/80] OK   40498.7s  ETA 3 days, 17:59:49  [STAT] PSO-Cognitive-Mesh @ gr666 n=5 --neighbours-radius 5
+[   4/27  #60/80] OK   40741.0s  ETA 2 days, 17:04:20  [STAT] PSO-Cognitive-Tree @ gr666 n=5 --neighbours-radius 5
+[   5/27  #54/80] OK   41755.6s  ETA 2 days, 3:02:04  [DYN] PSO-Cognitive-DynOpp @ gr666 n=5 --param neighbor_pct=0.05
+[   6/27  #55/80] OK   41896.4s  ETA 1 day, 16:43:57  [DYN] PSO-Cognitive-DynMix @ gr666 n=5 --param neighbor_pct=0.25
+[   7/27  #57/80] OK   42089.2s  ETA 1 day, 9:24:15  [DYN] PSO-Cognitive-DynMix @ ali535 n=5 --param neighbor_pct=0.25
+[   8/27  #62/80] OK   41006.2s  ETA 1 day, 18:20:09  [STAT] PSO-Cognitive-Torus @ gr666 n=5 --neighbours-radius 5
+[   9/27  #67/80] OK   30010.9s  ETA 1 day, 15:56:54  [STAT] PSO-Cognitive-Tree @ ali535 n=5 --neighbours-radius 5
+[  10/27  #68/80] OK   30708.3s  ETA 1 day, 10:22:35  [STAT] PSO-Cognitive-Mesh @ ali535 n=5 --neighbours-radius 5
+[  11/27  #69/80] OK   30330.7s  ETA 1 day, 14:10:59  [STAT] PSO-Cognitive-Torus @ ali535 n=5 --neighbours-radius 5
+[  12/27  #71/80] OK   23345.5s  ETA 1 day, 9:22:58  [STAT] PSO-Tree @ gr666 n=5 --neighbours-radius 1
+[  13/27  #64/80] OK   60037.3s  ETA 1 day, 6:04:29  [DYN] PSO-DynSim @ ali535 n=5 --param neighbor_pct=0.25
+[  14/27  #63/80] OK   78990.9s  ETA 1 day, 4:18:31  [STAT] PSO-Cognitive-FreeScale @ gr666 n=5 --neighbours-radius 5
+[  15/27  #72/80] OK   23101.6s  ETA 1 day, 2:08:03  [STAT] PSO-Mesh @ gr666 n=5 --neighbours-radius 1
+[  16/27  #73/80] OK   23454.7s  ETA 22:50:23  [STAT] PSO-Torus @ gr666 n=5 --neighbours-radius 1
+[  17/27  #65/80] OK   85796.6s  ETA 20:40:33  [DYN] PSO-DynOpp @ ali535 n=5 --param neighbor_pct=0.25
+[  18/27  #59/80] OK   132489.1s  ETA 18:24:04  [DYN] PSO-DynMix @ gr666 n=5 --param neighbor_pct=0.25
+[  19/27  #76/80] OK   16399.7s  ETA 15:40:22  [STAT] PSO-Tree @ ali535 n=5 --neighbours-radius 1
+[  20/27  #75/80] OK   25009.5s  ETA 13:06:06  [BASE] PSO-Cognitive-Explore @ gr666 n=5
+[  21/27  #77/80] OK   16281.1s  ETA 10:47:02  [STAT] PSO-Mesh @ ali535 n=5 --neighbours-radius 1
+[  22/27  #78/80] OK   16495.5s  ETA 9:01:47  [STAT] PSO-Torus @ ali535 n=5 --neighbours-radius 1
+[  23/27  #70/80] OK   71948.5s  ETA 6:56:58  [STAT] PSO-Cognitive-FreeScale @ ali535 n=5 --neighbours-radius 5
+[  24/27  #66/80] OK   107109.0s  ETA 5:10:08  [BASE] PSO-Cognitive @ ali535 n=5
+[  25/27  #80/80] OK   16862.2s  ETA 3:21:09  [BASE] PSO-Explore @ ali535 n=5
+[  26/27  #79/80] OK   48779.6s  ETA 1:56:11  [STAT] PSO-FreeScale @ ali535 n=5 --neighbours-radius 1
+[  27/27  #74/80] OK   85942.2s  ETA 0:00:00  [STAT] PSO-FreeScale @ gr666 n=5 --neighbours-radius 1
+
+Finished in 2 days, 3:47:58  —  27 OK, 0 FAILED.

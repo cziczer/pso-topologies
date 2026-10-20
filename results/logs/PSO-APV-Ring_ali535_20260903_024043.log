@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV-Ring -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 18385.12
+
+--- stdout ---
+Algorithm : PSO-APV-Ring
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-APV-Ring_20260902T193418Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-APV-Ring_20260902T193418Z.json
+  best=2434.00  mean=2434.00  worst=2434.00  total_time=18383.9s

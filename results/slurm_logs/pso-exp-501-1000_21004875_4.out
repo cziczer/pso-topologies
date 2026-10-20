@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 601–625 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161818.log
+[   1/25  #602/1548] OK    353.7s  ETA 2:21:28  [E] PSO-SWU-Ring @ berlin52 --neighbours-radius 50
+[   2/25  #607/1548] OK    663.3s  ETA 2:07:08  [E] PSO-SWU-Ring @ bier127 --neighbours-radius 1
+[   3/25  #608/1548] OK    748.5s  ETA 1:31:29  [E] PSO-SWU-Tree @ bier127 --neighbours-radius 1
+[   4/25  #604/1548] OK    978.3s  ETA 1:25:36  [E] PSO-SWU-Mesh @ berlin52 --neighbours-radius 50
+[   5/25  #609/1548] OK    893.1s  ETA 1:23:06  [E] PSO-SWU-Mesh @ bier127 --neighbours-radius 1
+[   6/25  #610/1548] OK    867.5s  ETA 1:20:47  [E] PSO-SWU-Torus @ bier127 --neighbours-radius 1
+[   7/25  #612/1548] OK    774.1s  ETA 1:15:06  [E] PSO-SWU-Ring @ bier127 --neighbours-radius 2
+[   8/25  #613/1548] OK    847.1s  ETA 1:14:09  [E] PSO-SWU-Tree @ bier127 --neighbours-radius 2
+[   9/25  #614/1548] OK   1003.6s  ETA 1:15:05  [E] PSO-SWU-Mesh @ bier127 --neighbours-radius 2
+[  10/25  #615/1548] OK   1171.8s  ETA 1:13:06  [E] PSO-SWU-Torus @ bier127 --neighbours-radius 2
+[  11/25  #617/1548] OK    899.3s  ETA 1:12:50  [E] PSO-SWU-Ring @ bier127 --neighbours-radius 5
+[  12/25  #618/1548] OK   1228.1s  ETA 1:14:58  [E] PSO-SWU-Tree @ bier127 --neighbours-radius 5
+[  13/25  #619/1548] OK   1066.0s  ETA 1:09:13  [E] PSO-SWU-Mesh @ bier127 --neighbours-radius 5
+[  14/25  #611/1548] OK   4381.6s  ETA 1:07:10  [E] PSO-SWU-FreeScale @ bier127 --neighbours-radius 1
+[  15/25  #605/1548] OK   5537.6s  ETA 1:01:31  [E] PSO-SWU-Torus @ berlin52 --neighbours-radius 50
+[  16/25  #620/1548] OK   1497.5s  ETA 0:52:58  [E] PSO-SWU-Torus @ bier127 --neighbours-radius 5
+[  17/25  #622/1548] OK   1063.6s  ETA 0:48:34  [E] PSO-SWU-Ring @ bier127 --neighbours-radius 10
+[  18/25  #624/1548] OK   1308.8s  ETA 0:45:06  [E] PSO-SWU-Mesh @ bier127 --neighbours-radius 10
+[  19/25  #623/1548] OK   2637.0s  ETA 0:43:01  [E] PSO-SWU-Tree @ bier127 --neighbours-radius 10
+[  20/25  #625/1548] OK   2085.9s  ETA 0:34:29  [E] PSO-SWU-Torus @ bier127 --neighbours-radius 10
+[  21/25  #603/1548] OK   11400.9s  ETA 0:36:11  [E] PSO-SWU-Tree @ berlin52 --neighbours-radius 50
+[  22/25  #616/1548] OK   28618.8s  ETA 1:09:48  [E] PSO-SWU-FreeScale @ bier127 --neighbours-radius 2
+[  23/25  #606/1548] OK   49640.8s  ETA 1:11:56  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 50
+[  24/25  #601/1548] OK   51102.0s  ETA 0:35:29  [E] PSO-SWU-FreeScale @ berlin52 --neighbours-radius 25
+[  25/25  #621/1548] OK   52841.4s  ETA 0:00:00  [E] PSO-SWU-FreeScale @ bier127 --neighbours-radius 5
+
+Finished in 15:55:41  —  25 OK, 0 FAILED.

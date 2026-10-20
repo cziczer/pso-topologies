@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-FreeScale -p tsplib-pr1002 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 163532.22
+
+--- stdout ---
+Algorithm : PSO-FreeScale
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 5
+Output    : results/tsplib-pr1002_PSO-FreeScale_20261004T172706Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-FreeScale_20261004T172706Z.json
+  best=302690.90  mean=308256.55  worst=311940.73  total_time=163531.2s

@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 726–750 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161812.log
+[   1/25  #733/1548] OK   22263.4s  ETA 6 days, 4:25:23  [E] PSO-SWU-Tree @ pr1002 --neighbours-radius 2
+[   2/25  #731/1548] OK   29097.1s  ETA 3 days, 20:56:56  [E] PSO-SWU-FreeScale @ pr1002 --neighbours-radius 1
+[   3/25  #728/1548] OK   29152.0s  ETA 2 days, 11:23:01  [E] PSO-SWU-Tree @ pr1002 --neighbours-radius 1
+[   4/25  #727/1548] OK   30011.8s  ETA 1 day, 19:46:01  [E] PSO-SWU-Ring @ pr1002 --neighbours-radius 1
+[   5/25  #729/1548] OK   31289.9s  ETA 1 day, 10:45:59  [E] PSO-SWU-Mesh @ pr1002 --neighbours-radius 1
+[   6/25  #732/1548] OK   31529.4s  ETA 1 day, 3:44:03  [E] PSO-SWU-Ring @ pr1002 --neighbours-radius 2
+[   7/25  #730/1548] OK   31535.6s  ETA 22:31:31  [E] PSO-SWU-Torus @ pr1002 --neighbours-radius 1
+[   8/25  #734/1548] OK   29278.5s  ETA 1 day, 6:25:26  [E] PSO-SWU-Mesh @ pr1002 --neighbours-radius 2
+[   9/25  #735/1548] OK   24900.6s  ETA 1 day, 2:39:55  [E] PSO-SWU-Torus @ pr1002 --neighbours-radius 2
+[  10/25  #740/1548] OK   27061.4s  ETA 1 day, 0:24:55  [E] PSO-SWU-Torus @ pr1002 --neighbours-radius 5
+[  11/25  #737/1548] OK   29959.6s  ETA 21:12:07  [E] PSO-SWU-Ring @ pr1002 --neighbours-radius 5
+[  12/25  #738/1548] OK   31529.8s  ETA 18:54:14  [E] PSO-SWU-Tree @ pr1002 --neighbours-radius 5
+[  13/25  #739/1548] OK   31656.3s  ETA 16:12:05  [E] PSO-SWU-Mesh @ pr1002 --neighbours-radius 5
+[  14/25  #743/1548] OK   21290.7s  ETA 17:26:08  [E] PSO-SWU-Tree @ pr1002 --neighbours-radius 10
+[  15/25  #742/1548] OK   26553.2s  ETA 14:55:00  [E] PSO-SWU-Ring @ pr1002 --neighbours-radius 10
+[  16/25  #736/1548] OK   55635.7s  ETA 13:14:53  [E] PSO-SWU-FreeScale @ pr1002 --neighbours-radius 2
+[  17/25  #744/1548] OK   26102.4s  ETA 11:15:05  [E] PSO-SWU-Mesh @ pr1002 --neighbours-radius 10
+[  18/25  #726/1548] OK   88275.6s  ETA 9:32:09  [E] PSO-SWU-FreeScale @ gr666 --neighbours-radius 50
+[  19/25  #745/1548] OK   29165.0s  ETA 8:04:07  [E] PSO-SWU-Torus @ pr1002 --neighbours-radius 10
+[  20/25  #747/1548] OK   24095.6s  ETA 7:13:15  [E] PSO-SWU-Ring @ pr1002 --neighbours-radius 25
+[  21/25  #749/1548] OK   28258.1s  ETA 5:58:52  [E] PSO-SWU-Mesh @ pr1002 --neighbours-radius 25
+[  22/25  #748/1548] OK   34777.4s  ETA 4:22:06  [E] PSO-SWU-Tree @ pr1002 --neighbours-radius 25
+[  23/25  #750/1548] OK   30464.6s  ETA 2:48:53  [E] PSO-SWU-Torus @ pr1002 --neighbours-radius 25
+[  24/25  #741/1548] OK   75181.2s  ETA 1:28:00  [E] PSO-SWU-FreeScale @ pr1002 --neighbours-radius 5
+[  25/25  #746/1548] OK   73127.5s  ETA 0:00:00  [E] PSO-SWU-FreeScale @ pr1002 --neighbours-radius 10
+
+Finished in 1 day, 13:51:53  —  25 OK, 0 FAILED.

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Tree -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 2
+exit_code: 0
+elapsed_s: 847.14
+
+--- stdout ---
+Algorithm : PSO-SWU-Tree
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-SWU-Tree_20260902T143906Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-SWU-Tree_20260902T143906Z.json
+  best=133815.57  mean=133955.14  worst=133970.65  total_time=846.1s

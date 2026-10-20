@@ -1,0 +1,8 @@
+Task 6/17: configs 7-7 of 18 in results/pending_apvfix.log
+Retrying 18 failed experiments from results/pending_apvfix.log
+Running 1 experiments  (experiments 7–7 of 18) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_222213.log
+[   1/1  #7/18] OK   1541.3s  ETA 0:00:00  [APVX] PSO-SWU @ bier127 n=10 --param v_max=2.0 --param v_explore=0.0
+
+Finished in 0:25:41  —  1 OK, 0 FAILED.

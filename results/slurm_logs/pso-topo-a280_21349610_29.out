@@ -1,0 +1,8 @@
+[a280] task 29/47: configs 30-30 of 48
+Retrying 48 failed experiments from results/pending_topo_a280.log
+Running 1 experiments  (experiments 30–30 of 48) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230440.log
+[   1/1  #30/48] OK   55097.0s  ETA 0:00:00  [STAT] PSO-Cognitive-Explore-Ring @ a280 n=10 --neighbours-radius 25 --param stagnation_trigger=50
+
+Finished in 15:18:17  —  1 OK, 0 FAILED.

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Mesh -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 1308.76
+
+--- stdout ---
+Algorithm : PSO-SWU-Mesh
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-SWU-Mesh_20260902T155229Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-SWU-Mesh_20260902T155229Z.json
+  best=133519.13  mean=133855.02  worst=133970.65  total_time=1307.7s

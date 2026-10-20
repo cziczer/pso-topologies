@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-DynSim -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05
+exit_code: 0
+elapsed_s: 11930.66
+
+--- stdout ---
+Algorithm : PSO-Cognitive-DynSim
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-DynSim_20261004T162928Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-DynSim_20261004T162928Z.json
+  best=128186.12  mean=129325.56  worst=130525.45  total_time=11929.6s

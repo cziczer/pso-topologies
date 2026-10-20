@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Tree -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 15710.19
+
+--- stdout ---
+Algorithm : PSO-Tree
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Tree_20260830T221517Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Tree_20260830T221517Z.json
+  best=7544.37  mean=7597.91  worst=7804.66  total_time=15709.2s

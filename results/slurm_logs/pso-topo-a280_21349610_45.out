@@ -1,0 +1,8 @@
+[a280] task 45/47: configs 46-46 of 48
+Retrying 48 failed experiments from results/pending_topo_a280.log
+Running 1 experiments  (experiments 46–46 of 48) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230437.log
+[   1/1  #46/48] OK   63391.6s  ETA 0:00:00  [DYN] PSO-Cognitive-Explore-DynOpp @ a280 n=10 --param neighbor_pct=0.25 --param stagnation_trigger=50
+
+Finished in 17:36:31  —  1 OK, 0 FAILED.

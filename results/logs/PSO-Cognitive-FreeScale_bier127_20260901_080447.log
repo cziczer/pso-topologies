@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-FreeScale -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 96992.46
+
+--- stdout ---
+Algorithm : PSO-Cognitive-FreeScale
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-FreeScale_20260831T030815Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-FreeScale_20260831T030815Z.json
+  best=126956.10  mean=128867.02  worst=130414.50  total_time=96991.3s

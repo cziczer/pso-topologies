@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Torus -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 12538.40
+
+--- stdout ---
+Algorithm : PSO-Explore-Torus
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Explore-Torus_20261019T210440_758030Z_p115900.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Explore-Torus_20261019T210440_758030Z_p115900.json
+  best=122218.77  mean=124666.71  worst=127037.68  total_time=12533.9s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-DynOpp -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.05 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 32799.85
+
+--- stdout ---
+Algorithm : PSO-Explore-DynOpp
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-DynOpp_20261019T210438_586647Z_p202414.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-DynOpp_20261019T210438_586647Z_p202414.json
+  best=2831.97  mean=2938.61  worst=3023.42  total_time=32798.3s

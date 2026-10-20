@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Torus -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 2
+exit_code: 0
+elapsed_s: 5556.10
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Torus
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-Torus_20260902T154502Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-Torus_20260902T154502Z.json
+  best=7796.92  mean=8021.08  worst=8158.63  total_time=5555.1s

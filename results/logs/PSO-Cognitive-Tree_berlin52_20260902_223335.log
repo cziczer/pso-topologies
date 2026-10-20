@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Tree -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 9074.82
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Tree
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-Tree_20260902T180221Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-Tree_20260902T180221Z.json
+  best=7544.37  mean=7579.12  worst=7629.61  total_time=9073.8s

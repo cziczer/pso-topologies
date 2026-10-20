@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Ring -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 9981.89
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Ring
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Cognitive-Ring_20260831T060603Z.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Cognitive-Ring_20260831T060603Z.json
+  best=127908.45  mean=129119.73  worst=130991.67  total_time=9980.9s

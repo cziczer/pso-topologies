@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Mesh -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 14079.92
+
+--- stdout ---
+Algorithm : PSO-SWU-Mesh
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-SWU-Mesh_20260902T180549Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-SWU-Mesh_20260902T180549Z.json
+  best=3833.79  mean=3834.83  worst=3835.22  total_time=14078.3s

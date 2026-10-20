@@ -1,0 +1,4 @@
+Retrying 193 failed experiments from results/missing_1_400.log
+Running 25 experiments  (experiments 26–50 of 193) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161813.log

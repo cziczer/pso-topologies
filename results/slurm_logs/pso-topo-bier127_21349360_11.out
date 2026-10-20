@@ -1,0 +1,5 @@
+[bier127] task 11/43: configs 12-12 of 44
+Retrying 44 failed experiments from results/pending_topo_bier127.log
+Running 1 experiments  (experiments 12–12 of 44) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_225809.log

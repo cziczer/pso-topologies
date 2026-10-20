@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore -p tsplib-bier127 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 8245.77
+
+--- stdout ---
+Algorithm : PSO-Explore
+Problem   : tsplib-bier127  (dimension=127)
+Runs      : 10
+Output    : results/tsplib-bier127_PSO-Explore_20261019T210444_007285Z_p115982.json
+
+
+Done. Results saved to: results/tsplib-bier127_PSO-Explore_20261019T210444_007285Z_p115982.json
+  best=125371.42  mean=127384.16  worst=129385.04  total_time=8238.0s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-FreeScale -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 66641.42
+
+--- stdout ---
+Algorithm : PSO-FreeScale
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-FreeScale_20260830T220940Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-FreeScale_20260830T220940Z.json
+  best=7544.37  mean=7581.71  worst=7819.59  total_time=66640.4s

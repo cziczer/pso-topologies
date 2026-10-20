@@ -1,0 +1,8 @@
+[berlin52] task 2/45: configs 3-3 of 46
+Retrying 46 failed experiments from results/pending_topo_berlin52.log
+Running 1 experiments  (experiments 3–3 of 46) with 1 workers (NUMBA_NUM_THREADS=1)
+Experiment logs: results/logs/
+Failure log:     results/failed_20261019_230436.log
+[   1/1  #3/46] OK   2431.0s  ETA 0:00:00  [BASE] PSO-Explore @ berlin52 n=10 --param stagnation_trigger=50
+
+Finished in 0:40:31  —  1 OK, 0 FAILED.

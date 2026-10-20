@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Tree -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 45832.93
+
+--- stdout ---
+Algorithm : PSO-Tree
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-Tree_20261005T073516Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Tree_20261005T073516Z.json
+  best=228059.00  mean=236405.00  worst=240828.00  total_time=45832.2s

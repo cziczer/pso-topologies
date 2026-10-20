@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-FreeScale -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 2
+exit_code: 0
+elapsed_s: 62949.84
+
+--- stdout ---
+Algorithm : PSO-Cognitive-FreeScale
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Cognitive-FreeScale_20260902T154548Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Cognitive-FreeScale_20260902T154548Z.json
+  best=7544.37  mean=7552.15  worst=7595.52  total_time=62948.9s

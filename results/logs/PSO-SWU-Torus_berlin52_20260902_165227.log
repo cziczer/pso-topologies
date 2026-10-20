@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Torus -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 1217.67
+
+--- stdout ---
+Algorithm : PSO-SWU-Torus
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-SWU-Torus_20260902T143210Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-SWU-Torus_20260902T143210Z.json
+  best=8134.90  mean=8170.07  worst=8182.19  total_time=1216.6s

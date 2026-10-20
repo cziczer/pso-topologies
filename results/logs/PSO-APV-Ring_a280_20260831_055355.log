@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV-Ring -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 4455.21
+
+--- stdout ---
+Algorithm : PSO-APV-Ring
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-APV-Ring_20260831T023940Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-APV-Ring_20260831T023940Z.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=4454.0s

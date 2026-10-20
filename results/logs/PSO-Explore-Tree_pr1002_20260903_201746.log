@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Tree -p tsplib-pr1002 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 100774.24
+
+--- stdout ---
+Algorithm : PSO-Explore-Tree
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 10
+Output    : results/tsplib-pr1002_PSO-Explore-Tree_20260902T141815Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-Explore-Tree_20260902T141815Z.json
+  best=312237.27  mean=312237.27  worst=312237.27  total_time=100771.1s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Torus -p tsplib-a280 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 13596.82
+
+--- stdout ---
+Algorithm : PSO-Explore-Torus
+Problem   : tsplib-a280  (dimension=280)
+Runs      : 10
+Output    : results/tsplib-a280_PSO-Explore-Torus_20260902T141823Z.json
+
+
+Done. Results saved to: results/tsplib-a280_PSO-Explore-Torus_20260902T141823Z.json
+  best=3094.28  mean=3094.28  worst=3094.28  total_time=13593.8s

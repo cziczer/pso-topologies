@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-FreeScale -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 25
+exit_code: 0
+elapsed_s: 111737.48
+
+--- stdout ---
+Algorithm : PSO-Cognitive-FreeScale
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-Cognitive-FreeScale_20261004T184712Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Cognitive-FreeScale_20261004T184712Z.json
+  best=238284.00  mean=239400.20  worst=240641.00  total_time=111736.8s

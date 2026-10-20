@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-SWU-Mesh -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 8732.18
+
+--- stdout ---
+Algorithm : PSO-SWU-Mesh
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-SWU-Mesh_20260902T184859Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-SWU-Mesh_20260902T184859Z.json
+  best=2433.98  mean=2433.99  worst=2434.00  total_time=8731.1s

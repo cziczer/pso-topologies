@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet
+exit_code: 0
+elapsed_s: 64953.26
+
+--- stdout ---
+Algorithm : PSO
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO_20261004T204114Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO_20261004T204114Z.json
+  best=228775.00  mean=233689.00  worst=237038.00  total_time=64952.6s

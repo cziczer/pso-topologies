@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Torus -p tsplib-pr1002 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 82647.75
+
+--- stdout ---
+Algorithm : PSO-Torus
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 5
+Output    : results/tsplib-pr1002_PSO-Torus_20261004T075509Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-Torus_20261004T075509Z.json
+  best=301727.70  mean=310068.95  worst=312237.27  total_time=82646.8s

@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynOpp -p tsplib-ali535 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 85796.64
+
+--- stdout ---
+Algorithm : PSO-DynOpp
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 5
+Output    : results/tsplib-ali535_PSO-DynOpp_20261004T065812Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-DynOpp_20261004T065812Z.json
+  best=220425.00  mean=225962.40  worst=230149.00  total_time=85796.0s

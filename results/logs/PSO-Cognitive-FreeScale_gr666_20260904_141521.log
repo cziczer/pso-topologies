@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-FreeScale -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 1
+exit_code: 0
+elapsed_s: 91758.76
+
+--- stdout ---
+Algorithm : PSO-Cognitive-FreeScale
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Cognitive-FreeScale_20260903T104603Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Cognitive-FreeScale_20260903T104603Z.json
+  best=3811.90  mean=3831.35  worst=3835.22  total_time=91757.7s

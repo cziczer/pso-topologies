@@ -1,0 +1,30 @@
+Running 25 experiments  (experiments 776–800 of 1548) with 8 workers (NUMBA_NUM_THREADS=2)
+Experiment logs: results/logs/
+Failure log:     results/failed_20260902_161812.log
+[   1/25  #777/1548] OK   2119.0s  ETA 14:07:37  [F] PSO-Explore-Ring @ berlin52 --neighbours-radius 25
+[   2/25  #782/1548] OK   2204.7s  ETA 7:02:34  [F] PSO-Explore-Ring @ berlin52 --neighbours-radius 50
+[   3/25  #779/1548] OK   3417.8s  ETA 6:57:43  [F] PSO-Explore-Mesh @ berlin52 --neighbours-radius 25
+[   4/25  #780/1548] OK   4511.5s  ETA 6:34:45  [F] PSO-Explore-Torus @ berlin52 --neighbours-radius 25
+[   5/25  #784/1548] OK   3466.1s  ETA 6:12:20  [F] PSO-Explore-Mesh @ berlin52 --neighbours-radius 50
+[   6/25  #787/1548] OK   4567.5s  ETA 7:59:10  [F] PSO-Explore-Ring @ bier127 --neighbours-radius 1
+[   7/25  #785/1548] OK   7849.7s  ETA 7:10:54  [F] PSO-Explore-Torus @ berlin52 --neighbours-radius 50
+[   8/25  #788/1548] OK   4611.6s  ETA 6:01:08  [F] PSO-Explore-Tree @ bier127 --neighbours-radius 1
+[   9/25  #783/1548] OK   13538.7s  ETA 6:41:08  [F] PSO-Explore-Tree @ berlin52 --neighbours-radius 50
+[  10/25  #789/1548] OK   4557.4s  ETA 5:40:54  [F] PSO-Explore-Mesh @ bier127 --neighbours-radius 1
+[  11/25  #790/1548] OK   4776.7s  ETA 5:14:36  [F] PSO-Explore-Torus @ bier127 --neighbours-radius 1
+[  12/25  #791/1548] OK   6846.0s  ETA 5:07:43  [F] PSO-Explore-FreeScale @ bier127 --neighbours-radius 1
+[  13/25  #792/1548] OK   4690.3s  ETA 4:40:26  [F] PSO-Explore-Ring @ bier127 --neighbours-radius 2
+[  14/25  #793/1548] OK   4691.8s  ETA 4:00:00  [F] PSO-Explore-Tree @ bier127 --neighbours-radius 2
+[  15/25  #794/1548] OK   4573.9s  ETA 3:35:36  [F] PSO-Explore-Mesh @ bier127 --neighbours-radius 2
+[  16/25  #778/1548] OK   20934.0s  ETA 3:16:15  [F] PSO-Explore-Tree @ berlin52 --neighbours-radius 25
+[  17/25  #795/1548] OK   4885.9s  ETA 2:51:59  [F] PSO-Explore-Torus @ bier127 --neighbours-radius 2
+[  18/25  #797/1548] OK   4556.3s  ETA 2:28:19  [F] PSO-Explore-Ring @ bier127 --neighbours-radius 5
+[  19/25  #798/1548] OK   4900.6s  ETA 2:07:55  [F] PSO-Explore-Tree @ bier127 --neighbours-radius 5
+[  20/25  #799/1548] OK   4694.9s  ETA 1:46:47  [F] PSO-Explore-Mesh @ bier127 --neighbours-radius 5
+[  21/25  #800/1548] OK   5141.6s  ETA 1:25:56  [F] PSO-Explore-Torus @ bier127 --neighbours-radius 5
+[  22/25  #796/1548] OK   29066.1s  ETA 1:47:29  [F] PSO-Explore-FreeScale @ bier127 --neighbours-radius 2
+[  23/25  #781/1548] OK   62165.1s  ETA 1:30:05  [F] PSO-Explore-FreeScale @ berlin52 --neighbours-radius 25
+[  24/25  #776/1548] OK   64633.4s  ETA 0:44:53  [F] PSO-Explore-FreeScale @ berlin52 --neighbours-radius 10
+[  25/25  #786/1548] OK   71857.9s  ETA 0:00:00  [F] PSO-Explore-FreeScale @ berlin52 --neighbours-radius 50
+
+Finished in 20:54:35  —  25 OK, 0 FAILED.

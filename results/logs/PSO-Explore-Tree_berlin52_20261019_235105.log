@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Explore-Tree -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5 --param stagnation_trigger=50
+exit_code: 0
+elapsed_s: 2785.49
+
+--- stdout ---
+Algorithm : PSO-Explore-Tree
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-Explore-Tree_20261019T210441_831351Z_p392718.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-Explore-Tree_20261019T210441_831351Z_p392718.json
+  best=7544.37  mean=7576.89  worst=7869.62  total_time=2783.5s

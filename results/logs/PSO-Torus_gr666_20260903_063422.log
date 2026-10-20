@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Torus -p tsplib-gr666 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 5
+exit_code: 0
+elapsed_s: 51369.19
+
+--- stdout ---
+Algorithm : PSO-Torus
+Problem   : tsplib-gr666  (dimension=666)
+Runs      : 10
+Output    : results/tsplib-gr666_PSO-Torus_20260902T141815Z.json
+
+
+Done. Results saved to: results/tsplib-gr666_PSO-Torus_20260902T141815Z.json
+  best=3761.94  mean=3827.89  worst=3835.22  total_time=51366.7s

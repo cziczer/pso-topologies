@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-APV-Ring -p tsplib-berlin52 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 50
+exit_code: 0
+elapsed_s: 389.92
+
+--- stdout ---
+Algorithm : PSO-APV-Ring
+Problem   : tsplib-berlin52  (dimension=52)
+Runs      : 10
+Output    : results/tsplib-berlin52_PSO-APV-Ring_20260830T215132Z.json
+
+
+Done. Results saved to: results/tsplib-berlin52_PSO-APV-Ring_20260830T215132Z.json
+  best=8182.19  mean=8182.19  worst=8182.19  total_time=388.9s

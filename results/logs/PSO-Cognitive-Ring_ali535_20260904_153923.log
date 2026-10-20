@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-Cognitive-Ring -p tsplib-ali535 --repetitions 10 --particles 1000 --max-iter 30000 --quiet --neighbours-radius 10
+exit_code: 0
+elapsed_s: 59140.58
+
+--- stdout ---
+Algorithm : PSO-Cognitive-Ring
+Problem   : tsplib-ali535  (dimension=535)
+Runs      : 10
+Output    : results/tsplib-ali535_PSO-Cognitive-Ring_20260903T211344Z.json
+
+
+Done. Results saved to: results/tsplib-ali535_PSO-Cognitive-Ring_20260903T211344Z.json
+  best=2434.00  mean=2434.00  worst=2434.00  total_time=59139.6s

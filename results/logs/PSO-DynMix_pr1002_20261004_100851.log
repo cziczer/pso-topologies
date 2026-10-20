@@ -1,0 +1,13 @@
+CMD: uv run main.py -a PSO-DynMix -p tsplib-pr1002 --repetitions 5 --particles 1000 --max-iter 30000 --quiet --param neighbor_pct=0.25
+exit_code: 0
+elapsed_s: 45461.57
+
+--- stdout ---
+Algorithm : PSO-DynMix
+Problem   : tsplib-pr1002  (dimension=1002)
+Runs      : 5
+Output    : results/tsplib-pr1002_PSO-DynMix_20261003T193110Z.json
+
+
+Done. Results saved to: results/tsplib-pr1002_PSO-DynMix_20261003T193110Z.json
+  best=312004.32  mean=312190.68  worst=312237.27  total_time=45460.1s
